@@ -1,0 +1,29 @@
+
+.mail_head {
+  padding: 8px;
+
+}
+
+.mail_subject {
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  font-size: 14px;
+}
+
+.mail_meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mail_meta time {
+  margin-left: auto;
+  font-size: 12px;
+  white-space: nowrap;
+  color: #555;
+}
+
+.real_message {
+  margin-top: 12px;
+}

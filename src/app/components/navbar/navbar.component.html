@@ -1,1 +1,36 @@
-<p>navbar works!</p>
+
+   
+<app-search-module context="navbar"></app-search-module>
+
+
+        <a href="newMail.html"
+            onclick="window.open('newMail.html','popup','width=700,height=450,scrollbars=yes,resizable=yes'); return false;">
+            <button class="compose_btn compose_btn_mini">
+                <img src="images/edit64.png" alt="Edit" class="icon_mini"><span>Compose</span>
+            </button>
+        </a>
+
+
+        <p class="list_title">Folder List</p>
+        <ul class="list_sidebar">
+            <li><img class="icon_mini" src="images/inbox64.png" alt="Inbox"> <span>Inbox</span></li>
+            <li><img class="icon_mini" src="images/draft64.png" alt="Draft"> <span>Draft</span></li>
+            <li><img class="icon_mini" src="images/sent64.png" alt="Sent"> <span>Sent</span></li>
+            <li><img class="icon_mini" src="images/trash64.png" alt="Trash"> <span>Trash</span></li>
+        </ul>
+
+        <p class="list_title">Custom List</p>
+        <!-- <img src="./assets/plus64.png" alt="aggiungi" class="icon_mini">
+        <p class="add_folder">Add Folder</p> -->
+
+        <button id="add_folder_btn" class="compose_btn compose_btn_mini"><img src="images/plus64.png" alt="aggiungi"
+                class="icon_mini"><span>Add
+            Folder</span></button>
+
+        <div id="custom_div">
+
+            <ul id="customList" class="list_sidebar"></ul>
+
+
+        </div>
+   

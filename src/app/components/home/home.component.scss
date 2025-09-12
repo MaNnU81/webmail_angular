@@ -1,0 +1,62 @@
+
+
+
+.app-container {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "navbar list"
+    "navbar viewer";
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: 300px 1fr;
+  height: 100vh;
+  gap: 0;
+}
+
+.app-header {
+  grid-area: header;
+  background-color: #f8f9fa;
+  position: relative; 
+    width: 100%;
+
+}
+
+
+
+.app-navbar {
+  grid-area: navbar;
+  background-color: #e9ecef;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.message-list {
+  grid-area: list;
+  background-color: #ffffff;
+  border-right: 1px solid #dee2e6;
+  overflow-y: auto;
+}
+
+.message-viewer {
+  grid-area: viewer;
+  background-color: #f8f9fa;
+  overflow-y: auto;
+}
+
+// Responsive design per mobile
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-areas:
+      "header"
+      "navbar"
+      "list"
+      "viewer";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto 300px 1fr;
+   
+  }
+  
+  .message-list {
+    border-right: none;
+    border-bottom: 1px solid #dee2e6;
+  }
+}
