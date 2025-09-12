@@ -5,8 +5,8 @@
   display: grid;
   grid-template-areas:
     "header header"
-    "navbar list"
-    "navbar viewer";
+    "navbar mailView"
+    "navbar mailView";
   grid-template-rows: auto auto 1fr;
   grid-template-columns: 300px 1fr;
   height: 100vh;
@@ -22,6 +22,11 @@
 }
 
 
+.app-mailView {
+    grid-area: mailView;
+    overflow-y: auto;
+}
+
 
 .app-navbar {
   grid-area: navbar;
@@ -29,29 +34,21 @@
   border-bottom: 1px solid #dee2e6;
 }
 
-.message-list {
-  grid-area: list;
-  background-color: #ffffff;
-  border-right: 1px solid #dee2e6;
-  overflow-y: auto;
-}
 
-.message-viewer {
-  grid-area: viewer;
-  background-color: #f8f9fa;
-  overflow-y: auto;
-}
+
+
 
 // Responsive design per mobile
 @media (max-width: 768px) {
+
+
   .app-container {
     grid-template-areas:
       "header"
       "navbar"
-      "list"
-      "viewer";
+      "mailView";
     grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto 300px 1fr;
+    grid-template-rows: auto auto auto;
    
   }
   

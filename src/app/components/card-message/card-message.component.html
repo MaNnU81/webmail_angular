@@ -1,0 +1,35 @@
+    <article id="centralUp">
+
+        <div class="multi_message">
+            <div class="single_msg">
+  <!-- checklist (solo layout, disattivata) -->
+  <input class="checkmail anteprima" type="checkbox" disabled>
+
+  <!-- data -->
+  <span class="central_msg">
+    {{ item.data | date:'dd/MM/yyyy' }}
+  </span>
+
+  <!-- mittente (renderizza &#64; come @) -->
+  <span class="central_msg" [innerHTML]="item.mittente"></span>
+
+  <!-- oggetto -->
+  <span class="central_msg">
+    Oggetto: {{ item.oggetto }}
+  </span>
+
+  <!-- anteprima -->
+  <span class="central_msg anteprima">
+    Anteprima: {{ item.anteprima }}
+  </span>
+
+  <!-- checkbox elimina (solo layout, disattivata) -->
+  <input class="deleteMail" type="checkbox" disabled>
+
+  <!-- icona trash (solo display) -->
+  <img class="icon_mini filter_msg" src="images/trash64.png" alt="Trash" aria-hidden="true">
+</div>
+
+
+        </div>
+    </article>

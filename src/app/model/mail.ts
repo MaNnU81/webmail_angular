@@ -17,11 +17,10 @@ export interface Mail {
     snippet?: string;  //anteprima
 
     isRead: boolean;
-    starred: boolean;
+    isStarred: boolean;
     folder: Folder;
 
     hasAttachments?:boolean;
     attachments?: Attachments[];
-
 
 }
