@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
-import { SearchModuleComponent } from "../search-module/search-module.component";
+import { NavbarActionsComponent } from "../navbar-actions/navbar-actions.component";
 
 @Component({
   selector: 'app-navbar',
-  imports: [SearchModuleComponent],
+  imports: [ NavbarActionsComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent {
 
+export class NavbarComponent {
+onFolderSelect(event: any) {
+    const selectedValue = event.target.value;
+    if (selectedValue) {
+      // Naviga alla cartella selezionata
+      console.log('Cartella selezionata:', selectedValue);
+      // this.router.navigate(['/mail', selectedValue]);
+    }
+}
 }

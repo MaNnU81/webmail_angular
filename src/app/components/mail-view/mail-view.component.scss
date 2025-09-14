@@ -1,43 +1,43 @@
+.icon_mini {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+
+}
+
 .message-list {
-
-  background-color: #ffffff;
-  border-right: 1px solid #dee2e6;
-  overflow-y: auto;
-}
-
-.message-viewer {
-  
-  background-color: #f8f9fa;
-  overflow-y: auto;
-}
-
-#centralUp {
   display: flex;
   flex-direction: column;
-  min-height: 0;
-  gap: 8px;
-  padding: 8px;
+  height: 100%;
+  background-color: #ffffff;
+  border-right: 1px solid #dee2e6;
 }
+
+.message-list-header {
+  flex: 0 0 auto;
+ 
+  border-bottom: 1px solid #14518c;
+}
+
+.message-list-content {
+  flex: 1 1 auto;
+ 
+  overflow-y: auto;
+  min-height: 0;
+
+  max-height: 40vh;
+}
+
 
 .mini_bar {
   height: 24px;
-  flex: 0 0 auto;
   display: flex;
   align-items: center;
   padding: 0 8px;
   gap: 4px;
   overflow: hidden;
-  border-bottom: 1px solid #14518c;
 }
 
-.multi_message {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow: auto;
-  padding: 8px;
-  border-bottom: 1px solid #14518c;
-
-}
 
 .title_msg {
   font-size: 12px;
@@ -50,68 +50,22 @@
   line-height: 12px;
 }
 
-
-.icon_mini  {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-
-}
-
 .filter_msg {
   border-right: 1px solid #14518c;
-
-}
-
-.mini_bar img.filter_msg,
-.multi_message .single_msg img.filter_msg {
-  border-right: 0;
-
-}
-
-
-.mini_bar span.filter_msg {
   flex: 1 1 0;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: 18px;
 }
 
-.central_msg {
-  flex: 1 1 auto;
-  min-height: 0;
+.mini_bar img.filter_msg {
+  border-right: 0;
 }
 
-.single_msg span.central_msg {
-  flex: 1 1 0;
-  min-width: 0px;
-  overflow: hidden;
-
-  align-items: center;
-
-}
+// @media (max-width: 768px) {
 
 
-
-
-.multi_message .single_msg {
-  display: grid;
-  grid-template-columns:
-    auto 1fr 1fr 1fr 1fr auto auto;
-  align-items: center;
-  gap: 4px;
-  padding: 0 8px;
-  height: 32px;
-  border-bottom: 1px solid #e6e6e6;
-}
-
-.multi_message .single_msg .central_msg {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 12px;
-}
+// }

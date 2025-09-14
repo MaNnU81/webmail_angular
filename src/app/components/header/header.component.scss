@@ -32,16 +32,13 @@
 
 
 @media (max-width: 768px){
- .search_header {
-  display: none;
- }
- 
+
  .header_container {
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
   justify-items: left;
-  padding: 4px 8px;
+  padding: 8px 8px;
   flex-wrap: nowrap;
 }
 }

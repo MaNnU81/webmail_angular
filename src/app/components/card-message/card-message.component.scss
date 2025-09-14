@@ -1,42 +1,3 @@
-#centralUp {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  gap: 8px;
-  padding: 8px;
-}
-
-.mini_bar {
-  height: 24px;
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
-  gap: 4px;
-  overflow: hidden;
-  border-bottom: 1px solid #14518c;
-}
-
-.multi_message {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow: auto;
-  padding: 8px;
-  border-bottom: 1px solid #14518c;
-
-}
-
-.title_msg {
-  font-size: 12px;
-  line-height: 14px;
-}
-
-.tot_msg {
-  margin-left: auto;
-  font-size: 10px;
-  line-height: 12px;
-}
-
 
 .icon_mini  {
   width: 20px;
@@ -44,50 +5,9 @@
   object-fit: contain;
 
 }
-
-.filter_msg {
-  border-right: 1px solid #14518c;
-
-}
-
-.mini_bar img.filter_msg,
-.multi_message .single_msg img.filter_msg {
-  border-right: 0;
-
-}
-
-
-.mini_bar span.filter_msg {
-  flex: 1 1 0;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-}
-
-.central_msg {
-  flex: 1 1 auto;
-  min-height: 0;
-}
-
-.single_msg span.central_msg {
-  flex: 1 1 0;
-  min-width: 0px;
-  overflow: hidden;
-
-  align-items: center;
-
-}
-
-
-
-
-.multi_message .single_msg {
+.single_msg {
   display: grid;
-  grid-template-columns:
-    auto 1fr 1fr 1fr 1fr auto auto;
+  grid-template-columns: auto 60px 1fr 1fr 1fr auto auto;
   align-items: center;
   gap: 4px;
   padding: 0 8px;
@@ -95,10 +15,82 @@
   border-bottom: 1px solid #e6e6e6;
 }
 
-.multi_message .single_msg .central_msg {
+.central_msg {
+  flex: 1 1 0;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 12px;
+  font-size: 14px;
+  align-items: center;
 }
+
+.checkmail, .deleteMail {
+  /* Stili per checkbox */
+  width: 16px;
+  height: 16px;
+}
+
+.anteprima {
+  /* Stili specifici per anteprima */
+  font-style: italic;
+  color: #666;
+}
+
+.single_msg img.filter_msg {
+  border-right: 0;
+  opacity: 0.6;
+}
+
+.single_msg:hover {
+  background-color: #f0f8ff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .single_msg {
+    grid-template-columns: auto 0.8fr 1.2fr 1fr auto auto;
+    gap: 2px;
+    padding: 0 4px;
+    height: 28px;
+  }
+
+  /* Nascondi la colonna anteprima */
+  .single_msg .central_msg.anteprima {
+    display: none;
+  }
+
+  /* Formato data compatto per mobile */
+  .single_msg .central_msg:first-of-type {
+    font-size: 10px;
+    min-width: 45px;
+    text-transform: uppercase;
+  }
+
+  /* Riduci font size per gli altri campi */
+  .single_msg .central_msg:not(:first-of-type) {
+    font-size: 12px;
+  }
+
+  /* Riduci dimensioni checkbox e icone */
+  .checkmail, .deleteMail {
+    width: 14px;
+    height: 14px;
+  }
+
+  .single_msg img.filter_msg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Migliora hover per touch */
+  .single_msg:hover {
+    background-color: #e3f2fd;
+  }
+
+    .central_msg:first-of-type {
+    font-weight: 600;
+  }
+}
+
+
