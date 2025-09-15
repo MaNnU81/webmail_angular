@@ -1,13 +1,14 @@
 
 .mail_head {
   padding: 8px;
-
+border-top: 1px solid #14518c;
+border-bottom: 1px solid #14518c;
 }
 
 .mail_subject {
   font-weight: 700;
   margin: 0 0 4px 0;
-  font-size: 14px;
+  font-size: 32px;
 }
 
 .mail_meta {
@@ -25,5 +26,10 @@
 }
 
 .real_message {
-  margin-top: 12px;
+ margin: 12px 8px;
+  font-size: 24px;
+  border: 2px solid #14518c;
+   border-radius: 16px;
+  background-color: rgba(156, 225, 235, 0.308);
+  padding: 8px 10px;
 }

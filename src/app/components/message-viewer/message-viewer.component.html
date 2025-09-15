@@ -3,16 +3,16 @@
     <div class="mail_subject">Oggetto: {{ mail.oggetto }}</div>
 
     <div class="mail_meta">
-      <span>Da: {{ extractName(mail.mittente) }} &lt;{{ extractEmail(mail.mittente) }}&gt;</span>
-      <span> • A: meexample.com</span> 
+      <span>Da: {{ extractName(mail.mittente) }}  {{ extractEmail(mail.mittente) }}</span>
+      <span> • A: "me&#64;sample.com"</span> 
       <time [attr.datetime]="mail.data">
         {{ formatDate(mail.data) }}
       </time>
     </div>
-
-    <div class="real_message">
-      {{ mail.anteprima }}
-    </div>
   </div>
+
+      <div class="real_message">
+      {{ mail.body }}
+    </div>
 </article>
 

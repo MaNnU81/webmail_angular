@@ -5,7 +5,7 @@
 }
 
 #centralUp.mail-selected .single_msg {
-  background-color: #e90808 !important;
+  background-color: #08e9264d !important;
   border-left: 3px solid #14518c !important;
 }
 
@@ -48,9 +48,13 @@
 }
 
 .single_msg:hover {
-  background-color: #0b84ee;
+  background-color: #0b84ee81;
   cursor: pointer;
 }
+
+  .single_msg .central_msg:not(:first-of-type) {
+    font-size: 24px;
+  }
 
 @media (max-width: 768px) {
   .single_msg {
@@ -74,7 +78,7 @@
 
   /* Riduci font size per gli altri campi */
   .single_msg .central_msg:not(:first-of-type) {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   /* Riduci dimensioni checkbox e icone */
