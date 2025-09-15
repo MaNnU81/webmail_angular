@@ -1,10 +1,14 @@
-
-.icon_mini  {
+.icon_mini {
   width: 20px;
   height: 20px;
   object-fit: contain;
-
 }
+
+#centralUp.mail-selected .single_msg {
+  background-color: #e90808 !important;
+  border-left: 3px solid #14518c !important;
+}
+
 .single_msg {
   display: grid;
   grid-template-columns: auto 60px 1fr 1fr 1fr auto auto;
@@ -13,6 +17,7 @@
   padding: 0 8px;
   height: 32px;
   border-bottom: 1px solid #e6e6e6;
+  transition: background-color 0.2s ease, border-left 0.2s ease;
 }
 
 .central_msg {
@@ -43,7 +48,7 @@
 }
 
 .single_msg:hover {
-  background-color: #f0f8ff;
+  background-color: #0b84ee;
   cursor: pointer;
 }
 
@@ -88,9 +93,12 @@
     background-color: #e3f2fd;
   }
 
-    .central_msg:first-of-type {
+  .central_msg:first-of-type {
     font-weight: 600;
   }
+
+  /* Stile selected per mobile */
+  #centralUp.mail-selected .single_msg {
+    border-left-width: 2px;
+  }
 }
-
-

@@ -1,20 +1,18 @@
-        <article id="centralDown">
-            <div class="mail_head">
-                <div class="mail_subject">Oggetto: Sala Prove</div>
+<article id="centralDown" *ngIf="mail">
+  <div class="mail_head">
+    <div class="mail_subject">Oggetto: {{ mail.oggetto }}</div>
 
-                <div class="mail_meta">
-                    <span>Da: Salette &lt;ciaone&#64;hotmail.com&gt;</span>
-                    <span>• A: gio&#64;example.com</span>
-                    <time datetime="2025-09-08T09:42:00+02:00">22 ago 2025, 09:42</time>
-                </div>
+    <div class="mail_meta">
+      <span>Da: {{ extractName(mail.mittente) }} &lt;{{ extractEmail(mail.mittente) }}&gt;</span>
+      <span> • A: meexample.com</span> 
+      <time [attr.datetime]="mail.data">
+        {{ formatDate(mail.data) }}
+      </time>
+    </div>
 
-                <div class="real_message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto
-                    ratione
-                    esse quod dignissimos, ducimus libero a itaque laudantium vero dicta obcaecati distinctio molestiae?
-                    Possimus, aperiam. Aliquam deserunt reiciendis nisi! Lorem ipsum, dolor sit amet consectetur
-                    adipisicing
-                    elit. Voluptatum earum recusandae exercitationem laudantium iusto labore nemo nam, natus porro,
-                    distinctio minima officiis at. Voluptatibus quibusdam, inventore deserunt voluptates soluta magnam.
-                </div>
-            </div>
-        </article>
+    <div class="real_message">
+      {{ mail.anteprima }}
+    </div>
+  </div>
+</article>
+

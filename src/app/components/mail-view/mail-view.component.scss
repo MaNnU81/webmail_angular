@@ -5,26 +5,25 @@
 
 }
 
+
+
 .message-list {
   display: flex;
   flex-direction: column;
   height: 100%;
   background-color: #ffffff;
-  border-right: 1px solid #dee2e6;
+  border-right: 1px solid #14518c;
 }
 
 .message-list-header {
   flex: 0 0 auto;
- 
   border-bottom: 1px solid #14518c;
 }
 
 .message-list-content {
   flex: 1 1 auto;
- 
   overflow-y: auto;
   min-height: 0;
-
   max-height: 40vh;
 }
 
@@ -36,11 +35,13 @@
   padding: 0 8px;
   gap: 4px;
   overflow: hidden;
+  border-top: 1px solid #14518c;
+  position: relative;
 }
 
 
 .title_msg {
-  font-size: 12px;
+  font-size: px;
   line-height: 14px;
 }
 
@@ -65,7 +66,28 @@
   border-right: 0;
 }
 
-// @media (max-width: 768px) {
+.deleteAllMail {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+  
+}
+
+@media (max-width: 768px) {
+.prova {
+  display: none;
+}
+.deleteAllMail {
+  right: 10px;
+}
+
+.filter_msg {
+  font-size: 16px;
+  line-height: 14px;
+}
+
+}
 
 
-// }
+

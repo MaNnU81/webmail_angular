@@ -12,15 +12,15 @@
       <span class="filter_msg">Data: </span>
       <span class="filter_msg">Mittente:</span>
       <span class="filter_msg">Oggetto:</span>
-      <span class="filter_msg anteprima">Anteprima:</span>
-      <input id="deleteAllMail" class="deleteMail" type="checkbox">
-      <img class="icon_mini filter_msg" src="images/trash64.png" alt="Trash">
+      <span class="filter_msg prova">Anteprima:</span>
+      <input id="deleteAllMail" class="deleteMail deleteAllMail" type="checkbox">
+      <img class="icon_mini filter_msg deleteAllMail" src="images/trash64.png" alt="Trash">
     </div>
   </div>
 
   <div class="message-list-content">
-    <app-message-list [mails]="mails"></app-message-list>
+    <app-message-list [selectedMail]="selectedMail" (mailSelected)="onMailSelected($event)" [mails]="mails"></app-message-list>
   </div>
 
-  <app-message-viewer></app-message-viewer>
+  <app-message-viewer [mail]="selectedMail"></app-message-viewer>
 </div>

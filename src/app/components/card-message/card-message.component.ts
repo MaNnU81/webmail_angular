@@ -10,4 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CardMessageComponent {
  @Input() item!: Mockmail;
+  @Input() isSelected: boolean = false;
+  
+  
 }

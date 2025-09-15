@@ -1,6 +1,9 @@
 <div class="message-list">
 
 
-  <app-card-message *ngFor="let item of mails; trackBy: trackByIndex"
-    [item]="item"></app-card-message>
+  <app-card-message *ngFor="let item of mails"
+    [item]="item" 
+    [class.mail-selected]="selectedMail?.id === item.id"
+    (click)="onMailClick(item)"
+    ></app-card-message>
 </div>

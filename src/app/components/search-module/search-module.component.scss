@@ -1,6 +1,8 @@
 .search-wrapper {
   display: flex;
   align-items: center;
+  height: 40px;
+  position: relative;
 }
 
 
@@ -19,7 +21,7 @@
 
 .compose_btn {
   display: inline-flex;
-  margin: 12px auto 12px 4px;
+  margin: 0;
   padding: 4px 8px;
   border: 0.4px solid #14518c;
   border-radius: 20px;
@@ -28,6 +30,9 @@
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
+    align-items: center; 
+  justify-content: center; 
+  height: 32px; 
 
 }
 
@@ -37,10 +42,14 @@
   opacity: 1;
   visibility: visible;
   transition: all 0.3s ease;
+    align-items: center; 
+  height: 40px; 
 }
 
 .navbar #search {
   display: none;
+  position: absolute;
+
 }
 
 
@@ -48,6 +57,9 @@
   border: 1px solid #14518c;
   border-radius: 8px;
   height: 32px;
+    padding: 0 8px; 
+  margin: 0; 
+  vertical-align: middle;
 }
 
 .header .search-toggle {
@@ -87,6 +99,7 @@
     align-items: center;
     justify-content: center;
     gap: 0;
+    margin: 0;
   }
 
   #search button span {
@@ -101,12 +114,41 @@
     opacity: 1;
     visibility: visible;
     transition: all 0.3s ease;
+    align-items: center; 
+    
   }
 
+ /* Nascondi il form di default */
+  .navbar #search {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    padding: 10px;
+    border: 1px solid #14518c;
+    border-radius: 8px;
+    z-index: 1000;
+    width: 200px;
+  }
 
-  // .navbar #search {
+  /* Mostra il toggle button */
+  .navbar .search-toggle {
+    display: flex !important;
+  }
 
-  // }
+  /* Quando isExpanded = true, mostra il form */
+  .navbar #search.visible {
+    display: flex !important;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Mostra l'input search */
+  #search-box {
+    display: block !important;
+    width: 100%;
+  }
 
 
 }
