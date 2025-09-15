@@ -3,7 +3,9 @@
 
   <app-card-message *ngFor="let item of mails"
     [item]="item" 
-    [class.mail-selected]="selectedMail?.id === item.id"
+    [isSelected]="selectedMail === item"
     (click)="onMailClick(item)"
     ></app-card-message>
 </div>
+
+ 
