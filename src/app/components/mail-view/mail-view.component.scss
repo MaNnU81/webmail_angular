@@ -18,6 +18,7 @@
 .message-list-header {
   flex: 0 0 auto;
   border-bottom: 1px solid #14518c;
+  
 }
 
 .message-list-content {
@@ -37,6 +38,7 @@
   overflow: hidden;
   border-top: 1px solid #14518c;
   position: relative;
+  
 }
 
 
@@ -53,13 +55,32 @@
 
 .filter_msg {
   border-right: 1px solid #14518c;
-  flex: 1 1 0;
-  min-width: 0;
-  overflow: hidden;
+
+
   text-overflow: ellipsis;
-  display: flex;
-  align-items: center;
+ white-space: nowrap;
+  align-items: center ;
   font-size: 18px;
+
+
+    display: grid;
+  grid-template-columns: auto 60px 1fr 1fr 1fr auto auto;
+  
+  gap: 4px;
+  padding: 0 8px;
+  height: 32px;
+ 
+ 
+  
+}
+
+
+
+
+
+.div_data{
+ 
+  max-width: 60px;
 }
 
 .mini_bar img.filter_msg {

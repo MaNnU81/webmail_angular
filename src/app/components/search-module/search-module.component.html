@@ -5,7 +5,7 @@
 </form> -->
 
 
-<div class="search-wrapper " [ngClass]="context">
+<div class="search-wrapper" [ngClass]="context">
   
   <!-- Toggle button per mobile -->
   <button class="search-toggle compose_btn  " (click)="isExpanded = !isExpanded">
@@ -15,7 +15,7 @@
   <!-- Form di ricerca -->
   <form id="search" class="header navbar" [class.visible]="context === 'header' || isExpanded">
     <input type="search" id="search-box" name="search_header" placeholder="Digita qui per cercare...">
-    <button class="compose_btn " type="submit">
+    <button class="compose_btn" type="submit">
       <img src="images/search64.png" alt="Cerca" class="icon_mini">
       <span>Cerca</span>
     </button>

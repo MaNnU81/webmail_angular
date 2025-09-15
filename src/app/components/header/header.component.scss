@@ -17,7 +17,7 @@
 
 .header_container::after{
   content:"";
-  position:absolute; left:0; right:0; bottom:0; height:4px;
+  position:absolute; left:0; right:0; bottom:0; height:8px;
   background: repeating-linear-gradient(
     45deg,
     var(--red, #ec044c) 0 12px,
