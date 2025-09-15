@@ -5,13 +5,20 @@
   padding-left: 4px;
 }
 
+.list_title {
+  font-size: 32px;
+  text-decoration: underline;
+}
 .list_sidebar {
   list-style: none;
   margin: 0;
   padding: 0;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+.list_sidebar li{
+font-size: 24px;
 
+}
 
 .list_sidebar li:hover {
 
@@ -26,6 +33,7 @@
   width: 24px;
   height: 24px;
   object-fit: contain;
+  margin-right: 8px;
 }
 
 /* Select per mobile - nascosto su desktop */
