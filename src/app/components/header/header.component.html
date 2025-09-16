@@ -1,7 +1,13 @@
 
 <div class="header_container"> 
 <app-title></app-title>
-<app-search-module context="header"></app-search-module>
+
+  <app-search-module
+    
+    *ngIf="(vp.isDesktop$ | async)">
+  </app-search-module>
+
+
 <app-account-display></app-account-display>
 </div>
 

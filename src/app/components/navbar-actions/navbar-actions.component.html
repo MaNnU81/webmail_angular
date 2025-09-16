@@ -1,27 +1,32 @@
 <div class="container_actions">
-
-<!-- ////finestra che si apre in basso a destra (CGpt)/// per basso a sx const left = window.screenX  + m; -->
-
-
-<a href="/newmail"
-   onclick="
-     const w=700,h=450, m=16;
-     const left = window.screenX + window.outerWidth  - w - m;
-     const top  = window.screenY + window.outerHeight - h - m;
-     window.open('/newmail','popup',`width=${w},height=${h},left=${left},top=${top},scrollbars=yes,resizable=yes`);
-     return false;
-   ">
-    
-<button class="compose_btn"> <img src="images/edit64.png" alt="Edit" class="icon_mini"><span>New Mail</span> </button> </a> 
-
-
-    <button id="add_folder_btn" class="compose_btn"><img src="images/plus64.png" alt="aggiungi"
-            class="icon_mini"><span>New Folder</span>
+  <a href="/newmail"
+     onclick="
+       const w=700,h=450,m=16;
+       const left = window.screenX + window.outerWidth - w - m;
+       const top  = window.screenY + window.outerHeight - h - m;
+       window.open('/newmail','popup',`width=${w},height=${h},left=${left},top=${top},scrollbars=yes,resizable=yes`);
+       return false;">
+    <button class="compose_btn">
+      <img src="images/edit64.png" alt="Edit" class="icon_mini"><span>New Mail</span>
     </button>
+  </a>
 
+  <button id="add_folder_btn" class="compose_btn">
+    <img src="images/plus64.png" alt="aggiungi" class="icon_mini"><span>New Folder</span>
+  </button>
 
-    <div>
-        <app-search-module context="navbar"></app-search-module>
-    </div>
+  <!-- Toggle SOLO tablet/mobile -->
+  <button class="compose_btn"
+          *ngIf="!(vp.isDesktop$ | async)"
+          (click)="toggleSearch()"
+          [attr.aria-expanded]="(vp.searchOpen$ | async) ? 'true' : 'false'"
+          aria-controls="nav-search">
+    <img src="assets/search64.png" alt="Cerca" class="icon_mini">
+    <span>Search</span>
+  </button>
 
+  <!-- Barra di ricerca compatta: SOLO tablet/mobile + se aperta -->
+  <div *ngIf="(!(vp.isDesktop$ | async)) && (vp.searchOpen$ | async)" id="nav-search">
+    <app-search-module></app-search-module>
+  </div>
 </div>

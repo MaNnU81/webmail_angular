@@ -1,10 +1,28 @@
 .container_actions {
   display: flex;
-  flex-direction: row;
+  align-items: center;
   gap: 8px;
-  padding: 8px;
+  flex-wrap: wrap;  
 }
 
+
+#nav-search{
+  flex-basis: 100%;          /* occupa tutta la larghezza della row */
+  order: 99;                 /* finisce sotto gli altri bottoni */
+  margin-top: 6px;
+}
+
+/* rendi il form fluido */
+#nav-search .search-form{
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+#nav-search .search-form input[type="search"]{
+  flex: 1 1 auto;            /* l’input si allarga */
+  min-width: 0;
+}
 .compose_btn { 
   display: inline-flex;
   align-items: center;

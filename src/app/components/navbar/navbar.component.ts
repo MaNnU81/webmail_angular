@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavbarActionsComponent } from "../navbar-actions/navbar-actions.component";
+import { ViewportService } from '../../services/viewport.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,12 @@ import { NavbarActionsComponent } from "../navbar-actions/navbar-actions.compone
 })
 
 export class NavbarComponent {
+ //searchmodule
+  vp = inject(ViewportService);
+  toggleSearch() { this.vp.toggleSearch(); }
+
+
+//mailselezionata
 onFolderSelect(event: any) {
     const selectedValue = event.target.value;
     if (selectedValue) {
