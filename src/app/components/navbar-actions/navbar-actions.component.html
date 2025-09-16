@@ -21,8 +21,9 @@
           (click)="toggleSearch()"
           [attr.aria-expanded]="(vp.searchOpen$ | async) ? 'true' : 'false'"
           aria-controls="nav-search">
-    <img src="assets/search64.png" alt="Cerca" class="icon_mini">
-    <span>Search</span>
+          <span>Cerca</span>
+    <!-- <img src="images/search64.png" alt="Cerca" class="icon_mini"> -->
+    
   </button>
 
   <!-- Barra di ricerca compatta: SOLO tablet/mobile + se aperta -->

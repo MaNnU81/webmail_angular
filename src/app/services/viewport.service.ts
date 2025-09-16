@@ -1,6 +1,8 @@
-import { inject, Injectable } from '@angular/core';
+import { Inject, inject, Injectable } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { BehaviorSubject, combineLatest, map, shareReplay } from 'rxjs';
+import { Route, Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 
 type SizeClass = 'mobile' | 'tablet' | 'desktop';
@@ -12,7 +14,7 @@ type SizeClass = 'mobile' | 'tablet' | 'desktop';
 export class ViewportService {
 
  private bo = inject(BreakpointObserver);
-
+ 
   // Breakpoint principali (soglie a scelta)
 
   readonly isMobile$ = this.bo.observe('(max-width: 767px)')
