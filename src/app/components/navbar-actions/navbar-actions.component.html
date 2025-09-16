@@ -1,12 +1,18 @@
 <div class="container_actions">
 
+<!-- ////finestra che si apre in basso a destra (CGpt)/// per basso a sx const left = window.screenX  + m; -->
 
-    <a href="newMail.html"
-        onclick="window.open('newMail.html','popup','width=700,height=450,scrollbars=yes,resizable=yes'); return false;">
-        <button class="compose_btn">
-            <img src="images/edit64.png" alt="Edit" class="icon_mini"><span>New Mail</span>
-        </button>
-    </a>
+
+<a href="/newmail"
+   onclick="
+     const w=700,h=450, m=16;
+     const left = window.screenX + window.outerWidth  - w - m;
+     const top  = window.screenY + window.outerHeight - h - m;
+     window.open('/newmail','popup',`width=${w},height=${h},left=${left},top=${top},scrollbars=yes,resizable=yes`);
+     return false;
+   ">
+    
+<button class="compose_btn"> <img src="images/edit64.png" alt="Edit" class="icon_mini"><span>New Mail</span> </button> </a> 
 
 
     <button id="add_folder_btn" class="compose_btn"><img src="images/plus64.png" alt="aggiungi"

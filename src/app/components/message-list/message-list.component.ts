@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Mockmail } from '../../model/mockmail';
 import { CommonModule } from '@angular/common';
 import { CardMessageComponent } from '../card-message/card-message.component';
+import { Mail } from '../../model/mail';
 
 @Component({
   selector: 'app-message-list',

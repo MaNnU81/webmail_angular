@@ -1,0 +1,119 @@
+
+
+
+.app-container {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "navbar settings"
+    "navbar settings";
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: 300px 1fr;
+  height: 100vh;
+  gap: 0;
+}
+
+.app-header {
+  grid-area: header;
+  background-color: #f8f9fa;
+  position: relative; 
+    width: 100%;
+
+}
+
+
+.app-settings {
+    grid-area: settings;
+    overflow-y: auto;
+}
+
+
+.app-navbar {
+  grid-area: navbar;
+  background-color: #e9ecef;
+  border-bottom: 1px solid #dee2e6;
+}
+
+
+
+
+
+// Responsive design per mobile
+@media (max-width: 768px) {
+
+
+  .app-container {
+    grid-template-areas:
+      "header"
+      "navbar"
+      "settings";
+    grid-template-columns: auto ;
+    grid-template-rows: auto auto auto;
+   
+  }
+  
+
+}
+
+
+h1{
+    text-align: center;
+}
+
+/* Layout */
+.container {
+  max-width: 760px;
+  margin: 16px auto;
+  padding: 0 12px 32px;
+}
+
+/* Sezioni base */
+.section {
+  background: #fff;
+  border: 1px solid #e6e8ef;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.section h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+/* Form rows */
+.row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.row-inline { flex-direction: row; align-items: center; gap: 8px; }
+label { font-weight: 600; font-size: 13px; }
+select, textarea, input[type="text"] {
+  border: 1px solid #cdd3e0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font: inherit;
+  background: #fff;
+}
+select:focus, textarea:focus, input:focus {
+  outline: none;
+  border-color: #7aa7ff;
+  box-shadow: 0 0 0 3px rgba(122,167,255,.2);
+}
+textarea { resize: vertical; }
+
+/* Azioni */
+.actions {
+  display: flex; gap: 8px; justify-content: flex-end;
+  margin-top: 8px;
+}
+.btn {
+  background: #fff;
+  border: 1px solid #cdd3e0;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.btn:hover { background: #f2f5fb; }
+.btn-primary {
+  background: #2f6df6;
+  color: #fff;
+  border-color: #2f6df6;
+}
+.btn-primary:hover { filter: brightness(0.95); }

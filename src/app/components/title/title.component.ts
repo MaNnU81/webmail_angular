@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-title',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './title.component.html',
   styleUrl: './title.component.scss'
 })
 export class TitleComponent {
-
+router = inject(Router);
 }
