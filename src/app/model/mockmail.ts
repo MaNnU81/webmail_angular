@@ -6,6 +6,7 @@ export interface Mockmail {
     id?: number; 
     destinatario?: string; 
     body: string; 
+    isRead: boolean;
 }
 
 

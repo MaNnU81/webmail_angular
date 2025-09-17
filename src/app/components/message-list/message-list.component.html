@@ -5,6 +5,7 @@
     [item]="item" 
     [isSelected]="selectedMail === item"
     (click)="onMailClick(item)"
+     [ngClass]="{ 'is-read': item.isRead, 'is-unread': !item.isRead }">
     ></app-card-message>
 </div>
 

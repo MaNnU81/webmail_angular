@@ -5,8 +5,8 @@
 }
 
 #centralUp.mail-selected .single_msg {
-  background-color: #08e9264d !important;
-  border-left: 3px solid #14518c !important;
+  // background-color: #08e9264d !important;
+  border: 3px solid #f50a0a !important;
 }
 
 .single_msg {
@@ -55,6 +55,24 @@
   .single_msg .central_msg:not(:first-of-type) {
     font-size: 24px;
   }
+
+  :host {
+  display: block;
+  border-bottom: 1px solid #e6e6e6; /* se ti serve */
+}
+
+/* Mail LETTA */
+:host(.is-read) {
+  background-color: #f7f9fc;
+  color: #666;
+}
+
+/* Mail NON letta */
+:host(.is-unread) {
+  background-color: #1664c46b;
+  color: #222;
+  
+}
 
 @media (max-width: 768px) {
   .single_msg {

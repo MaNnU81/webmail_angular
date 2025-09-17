@@ -1,1 +1,42 @@
-<h1>Scrivi una nuova mail qui!!!!!!!!</h1>
+<div class="app-container">
+
+    <header class="app-header" *ngIf="!(vp.isDesktop$ | async)">
+        <app-header></app-header>
+    </header>
+
+
+    <div class="app-settings">
+        <h1>Nuovo Messaggio</h1>
+
+        <main class="container">
+            <section class="section">
+                <h2>Composizione</h2>
+
+                <div class="row">
+                    <label for="from">From</label>
+                    <input id="from" type="email" placeholder="me@example.com" />
+                </div>
+
+                <div class="row">
+                    <label for="to">To</label>
+                    <input id="to" type="email" placeholder="destinatario@example.com" />
+                </div>
+
+                <div class="row">
+                    <label for="subject">Subject</label>
+                    <input id="subject" type="text" placeholder="Oggetto del messaggio" />
+                </div>
+
+                <div class="row">
+                    <label for="body">Body</label>
+                    <textarea id="body" rows="10" placeholder="Scrivi qui il tuo messaggio…"></textarea>
+                </div>
+            </section>
+
+            <div class="actions">
+                <button type="button" class="btn">Annulla</button>
+                <button type="button" class="btn btn-primary">Invia</button>
+            </div>
+        </main>
+    </div>
+</div>
