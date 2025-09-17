@@ -3,16 +3,14 @@
     <div class="mail_subject">Oggetto: {{ mail.oggetto }}</div>
 
     <div class="mail_meta">
-      <span>Da: {{ extractName(mail.mittente) }}  {{ extractEmail(mail.mittente) }}</span>
-      <span> • A: "me&#64;sample.com"</span> 
-      <time [attr.datetime]="mail.data">
-        {{ formatDate(mail.data) }}
-      </time>
+      <span>Da: {{ mail.mittente }}</span> 
+       <!-- fare pipe  <span>Da: {{ extractName(mail.mittente) }}  {{ extractEmail(mail.mittente) }}</span> -->
+      <span> • A: {{ mail.destinatario }}</span>
+      <span>{{ mail.data | date : 'dd/MM/yyyy HH:mm' }}</span>
     </div>
   </div>
 
-      <div class="real_message">
-      {{ mail.body }}
-    </div>
+  <div class="real_message">
+    {{ mail.body }}
+  </div>
 </article>
-

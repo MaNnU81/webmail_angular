@@ -1,11 +1,9 @@
 <div class="message-list">
-
-
-  <app-card-message *ngFor="let item of mails"
+  <app-card-message *ngFor="let item of mails; trackBy: trackByIndex"
     [item]="item" 
     [isSelected]="selectedMail === item"
     (click)="onMailClick(item)"
-     [ngClass]="{ 'is-read': item.isRead, 'is-unread': !item.isRead }">
+    [ngClass]="{ 'is-read': item.isRead, 'is-unread': !item.isRead }">
     ></app-card-message>
 </div>
 

@@ -16,12 +16,17 @@
       <input id="deleteAllMail" class="deleteMail deleteAllMail" type="checkbox">
       <img class="icon_mini " src="images/trash64.png" alt="Trash">
     </div>
-    
+
   </div>
 
   <div class="message-list-content">
-    <app-message-list [selectedMail]="selectedMail" (mailSelected)="onMailSelected($event)" [mails]="mails"></app-message-list>
+    <app-message-list [selectedMail]="selectedMail" (mailSelected)="onMailSelected($event)"
+      [mails]="mails"></app-message-list>
   </div>
 
   <app-message-viewer [mail]="selectedMail"></app-message-viewer>
+
+
+  <p *ngIf="loading">Caricamento…</p>
+  <p *ngIf="error" class="error">{{ error }}</p>
 </div>

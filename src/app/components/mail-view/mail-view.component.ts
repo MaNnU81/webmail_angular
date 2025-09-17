@@ -1,37 +1,62 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MessageListComponent } from "../message-list/message-list.component";
 import { MessageViewerComponent } from "../message-viewer/message-viewer.component";
 import { Mockmail } from '../../model/mockmail';
-import { MOCK_MAILS } from '../../mocks/mockmail';
+import { NgIf } from '@angular/common';
+import { MailDataService } from '../../services/mail-data.service';
 
 @Component({
   selector: 'app-mail-view',
-  imports: [MessageListComponent, MessageViewerComponent],
+  imports: [NgIf, MessageListComponent, MessageViewerComponent],
   templateUrl: './mail-view.component.html',
   styleUrl: './mail-view.component.scss'
 })
-export class MailViewComponent {
-readonly mails: Mockmail[] = MOCK_MAILS;
+export class MailViewComponent implements OnInit {
+
+  // readonly mails: Mockmail[] = MOCK_MAILS;
 
 
-////gestione selectedMail
-selectedMail: Mockmail | null = null;
+  // ////gestione selectedMail
+  // selectedMail: Mockmail | null = null;
 
-ngOnInit() {
-    // Seleziona automaticamente la prima mail all'inizio
-    if (this.mails.length > 0) {
-      this.selectedMail = this.mails[0];
-      console.log(this.selectedMail);
-      
+  // ngOnInit() {
+  //     // Seleziona automaticamente la prima mail all'inizio
+  //     if (this.mails.length > 0) {
+  //       this.selectedMail = this.mails[0];
+  //       console.log(this.selectedMail);
+
+  //     }
+  //   }
+
+
+  private api = inject(MailDataService);
+
+  mails: Mockmail[] = [];
+  selectedMail: Mockmail | null = null;
+  loading = false;
+  error: string | null = null;
+
+  ngOnInit(): void {
+    this.loading = true;
+    this.api.getMails$().subscribe({
+      next: m => { this.mails = m; this.loading = false; },
+      error: e => { this.error = 'Errore nel caricamento'; this.loading = false; console.error(e); }
+    });
+  }
+
+
+  onMailSelected(mail: Mockmail) {
+    this.selectedMail = mail;
+    // console.log(this.selectedMail);
+    if (!mail.isRead) {
+      // crea una NUOVA array per triggerare change detection (utile con OnPush)
+      this.mails = this.mails.map(m =>
+        m.id === mail.id ? { ...m, isRead: true } : m
+      );
     }
   }
 
 
-onMailSelected(mail:Mockmail){
-this.selectedMail = mail;
-// console.log(this.selectedMail);
-
 }
 
 
-}
