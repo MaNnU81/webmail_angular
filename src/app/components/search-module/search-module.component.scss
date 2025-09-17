@@ -38,7 +38,7 @@
 
 }
 
-#search  {
+.search-form  {
   display: flex;
   gap: 8px;
   opacity: 1;
@@ -48,15 +48,11 @@
   height: 40px; 
 }
 
-.navbar #search {
-  display: none;
-  position: absolute;
-
-}
 
 
 
-#search-box {
+
+.input_form {
   border: 1px solid #14518c;
   border-radius: 8px;
   height: 32px;
@@ -64,35 +60,18 @@
   margin: 4px; 
 }
 
-.header .search-toggle {
-  display: none;
-}
 
-.navbar .search-toggle {
-  display: none;
-}
 
 /////////// deep
 
 
 
-/* Mobile (<768px) */
+
 @media (max-width: 768px) {
-
-  #search-box {
-    display: none;
-  }
-
-  .header #search {
-    display: none;
-  }
+ 
 .compose_btn span {
   display: none;
 }
-
-  .navbar .search-toggle {
-    display: none;
-  }
 
   .compose_btn {
 
@@ -106,54 +85,43 @@
     margin: 0;
   }
 
-  #search button span {
-    display: none;
-  }
 
 
 
-  .navbar #search {
-    display: flex;
-    gap: 8px;
-    opacity: 1;
-    visibility: visible;
-    transition: all 0.3s ease;
-    align-items: center; 
-    
-  }
+ 
 
  /* Nascondi il form di default */
-  .navbar #search {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: white;
-    padding: 4px;
-    border: 1px solid #14518c;
-    border-radius: 8px;
-    z-index: 1000;
-    width: 300px;
-    height: 80px;
-  }
+  // .navbar #search {
+  //   display: none;
+  //   position: absolute;
+  //   top: 100%;
+  //   right: 0;
+  //   background: white;
+  //   padding: 4px;
+  //   border: 1px solid #14518c;
+  //   border-radius: 8px;
+  //   z-index: 1000;
+  //   width: 300px;
+  //   height: 80px;
+  // }
 
   /* Mostra il toggle button */
-  .navbar .search-toggle {
-    display: flex !important;
-  }
+  // .navbar .search-toggle {
+  //   display: flex !important;
+  // }
 
   /* Quando isExpanded = true, mostra il form */
-  .navbar #search.visible {
-    display: flex !important;
-    flex-direction: row;
-    gap: 4px;
-  }
+  // .navbar #search.visible {
+  //   display: flex !important;
+  //   flex-direction: row;
+  //   gap: 4px;
+  // }
 
   /* Mostra l'input search */
-  #search-box {
-    display: block !important;
-    width: 100%;
-  }
+  // #search-box {
+  //   display: block !important;
+  //   width: 100%;
+  // }
 
 
 }
