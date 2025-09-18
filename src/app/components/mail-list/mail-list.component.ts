@@ -1,18 +1,18 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Mockmail } from '../../model/mockmail';
 import { CommonModule, NgClass } from '@angular/common';
-import { CardMessageComponent } from '../card-message/card-message.component';
+import { MailCardComponent } from '../mail-card/mail.component';
 
 
 
 @Component({
-  selector: 'app-message-list',
-  imports: [NgClass, CommonModule, CardMessageComponent],
-  templateUrl: './message-list.component.html',
-  styleUrl: './message-list.component.scss',
+  selector: 'app-mail-list',
+  imports: [NgClass, CommonModule, MailCardComponent],
+  templateUrl: './mail-list.component.html',
+  styleUrl: './mail-list.component.scss',
   
 })
-export class MessageListComponent {
+export class MailListComponent {
   @Input({ required: true }) mails: Mockmail[] = [];
   trackByIndex = (i: number) => i;
 

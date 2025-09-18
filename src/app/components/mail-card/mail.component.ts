@@ -5,10 +5,10 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-card-message',
   imports: [CommonModule],
-  templateUrl: './card-message.component.html',
-  styleUrl: './card-message.component.scss'
+  templateUrl: './mail-card.component.html',
+  styleUrl: './mail-card.component.scss'
 })
-export class CardMessageComponent {
+export class MailCardComponent {
  @Input() item!: Mockmail;
   @Input() isSelected: boolean = false;
   

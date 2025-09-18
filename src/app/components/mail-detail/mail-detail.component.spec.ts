@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MessageViewerComponent } from './message-viewer.component';
+import { MailDetailComponent } from './mail-detail.component';
 
 describe('MessageViewerComponent', () => {
-  let component: MessageViewerComponent;
-  let fixture: ComponentFixture<MessageViewerComponent>;
+  let component: MailDetailComponent;
+  let fixture: ComponentFixture<MailDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MessageViewerComponent]
+      imports: [MailDetailComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MessageViewerComponent);
+    fixture = TestBed.createComponent(MailDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

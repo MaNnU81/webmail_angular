@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MessageListComponent } from "../message-list/message-list.component";
-import { MessageViewerComponent } from "../message-viewer/message-viewer.component";
+import { MailListComponent } from "../mail-list/mail-list.component";
+import { MailDetailComponent } from "../mail-detail/mail-detail.component";
 import { Mockmail } from '../../model/mockmail';
 import { NgIf } from '@angular/common';
 import { MailDataService } from '../../services/mail-data.service';
 
 @Component({
   selector: 'app-mail-view',
-  imports: [NgIf, MessageListComponent, MessageViewerComponent],
+  imports: [NgIf, MailListComponent, MailDetailComponent],
   templateUrl: './mail-view.component.html',
   styleUrl: './mail-view.component.scss'
 })

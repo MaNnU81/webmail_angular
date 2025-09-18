@@ -4,12 +4,12 @@ import { NgIf } from '@angular/common';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-message-viewer',
+  selector: 'app-mail-detail',
   imports: [NgIf, DatePipe],
-  templateUrl: './message-viewer.component.html',
-  styleUrl: './message-viewer.component.scss'
+  templateUrl: './mail-detail.component.html',
+  styleUrl: './mail-detail.component.scss'
 })
-export class MessageViewerComponent {
+export class MailDetailComponent {
  @Input() mail: Mockmail | null = null;
 
 }

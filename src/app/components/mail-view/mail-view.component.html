@@ -20,11 +20,11 @@
   </div>
 
   <div class="message-list-content">
-    <app-message-list [selectedMail]="selectedMail" (mailSelected)="onMailSelected($event)"
-      [mails]="mails"></app-message-list>
+    <app-mail-list [selectedMail]="selectedMail" (mailSelected)="onMailSelected($event)"
+      [mails]="mails"></app-mail-list>
   </div>
 
-  <app-message-viewer [mail]="selectedMail"></app-message-viewer>
+  <app-mail-detail [mail]="selectedMail"></app-mail-detail>
 
 
   <p *ngIf="loading">Caricamento…</p>
