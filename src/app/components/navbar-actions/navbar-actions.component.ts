@@ -10,6 +10,6 @@ import { ViewportService } from '../../services/viewport.service';
   styleUrl: './navbar-actions.component.scss'
 })
 export class NavbarActionsComponent {
-  vp = inject(ViewportService);
-  toggleSearch() { this.vp.toggleSearch(); }
+  viewportServ = inject(ViewportService);
+  toggleSearch() { this.viewportServ.toggleSearch(); }
 }

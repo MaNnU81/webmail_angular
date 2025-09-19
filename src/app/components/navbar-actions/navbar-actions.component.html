@@ -1,25 +1,23 @@
-<div class="container_actions">
-<button type="button" class="compose_btn" (click)="vp.openCompose()">
-  <img src="images/edit64.png" class="icon_mini" alt=""><span>New Mail</span>
+<nav class="navbar__actions-container">
+<button type="button" class="navbar__actions-button" (click)="viewportServ.openCompose()">
+  <img src="images/edit64.png" class="icon-sm" alt=""><span>New Mail</span>
 </button>
 
-  <button id="add_folder_btn" class="compose_btn">
-    <img src="images/plus64.png" alt="aggiungi" class="icon_mini"><span>New Folder</span>
+  <button  class="navbar__actions-button">
+    <img src="images/plus64.png" alt="aggiungi" class="icon-sm"><span>New Folder</span>
   </button>
 
   <!-- Toggle SOLO tablet/mobile -->
-  <button class="compose_btn"
-          *ngIf="!(vp.isDesktop$ | async)"
+  <button class="navbar__actions-button"
+          *ngIf="!(viewportServ.isDesktop$ | async)"
           (click)="toggleSearch()"
-          [attr.aria-expanded]="(vp.searchOpen$ | async) ? 'true' : 'false'"
+          [attr.aria-expanded]="(viewportServ.searchOpen$ | async) ? 'true' : 'false'"
           aria-controls="nav-search">
-          <img src="images/search64.png" alt="aggiungi" class="icon_mini"><span>Cerca</span>
-    <!-- <img src="images/search64.png" alt="Cerca" class="icon_mini"> -->
-    
+          <img src="images/search64.png" alt="aggiungi" class="icon-sm"><span>Cerca</span>
   </button>
 
   <!-- Barra di ricerca compatta: SOLO tablet/mobile + se aperta -->
-  <div *ngIf="(!(vp.isDesktop$ | async)) && (vp.searchOpen$ | async)" id="nav-search">
+  <div *ngIf="(!(viewportServ.isDesktop$ | async)) && (viewportServ.searchOpen$ | async)" id="nav-search">
     <app-search-module></app-search-module>
   </div>
-</div>
+</nav>

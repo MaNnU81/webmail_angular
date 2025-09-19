@@ -1,33 +1,15 @@
-.container_actions {
+.navbar__actions-container {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
 }
 
-
-#nav-search{
-  flex-basis: 100%;          /* occupa tutta la larghezza della row */
-  order: 99;                 /* finisce sotto gli altri bottoni */
-  margin-top: 6px;
-}
-
-/* rendi il form fluido */
-#nav-search .search-form{
-  display: flex;
-  gap: 8px;
-  width: 100%;
-}
-
-#nav-search .search-form input[type="search"]{
-  flex: 1 1 auto;            /* l’input si allarga */
-  min-width: 0;
-}
-.compose_btn { 
+.navbar__actions-button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin: 2px 0;
+  margin-top: 4px;
   padding: 8px 16px;
   border: 0.4px solid #14518c;
   border-radius: 20px;
@@ -38,12 +20,12 @@
   text-decoration: none;
 }
 
-.compose_btn:hover {
+.navbar__actions-button:hover {
   background: #1664c4;
   color: #fff;
 }
 
-.icon_mini {
+.icon-sm {
   width: 20px;
   height: 20px;
   object-fit: contain;
@@ -51,7 +33,7 @@
 
 /* Media query per mobile */
 @media (max-width: 768px) {
-  .container_actions {
+  .navbar__actions-container {
     flex-direction: row;
     align-items: center;
     gap: 4px;
@@ -59,11 +41,4 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  
-  .container_actions .compose_btn {
-    margin: 2px;
-    padding: 6px 8px;
-  }
-  
-
 }

@@ -1,4 +1,4 @@
-.title_container {
+.header__title{
     display: flex;
     align-items: center;
     gap: 8px;
@@ -7,12 +7,12 @@
     cursor: pointer;
 }
 
-.icon_nav {
+.icon-logo {
     width: 64px;
     height: 64px;
 }
 
-#title {
+.header__text {
     margin: 0;
     color: #333;
     font-size: 36px;
@@ -21,11 +21,11 @@
 /* Stili responsive */
 @media (max-width: 768px) {
 
-    #title {
+    .header__text {
      font-size: 18px;
     }
 
-    .icon_nav {
+    .icon-logo {
      width: 32px;
      height: 32px;
     }

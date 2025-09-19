@@ -13,8 +13,8 @@ import { NgIf, AsyncPipe } from '@angular/common';
 
 export class NavbarComponent {
  //searchmodule
-  vp = inject(ViewportService);
-  toggleSearch() { this.vp.toggleSearch(); }
+  viewportServ = inject(ViewportService);
+  toggleSearch() { this.viewportServ.toggleSearch(); }
 
 
 //mailselezionata
@@ -22,13 +22,13 @@ onFolderSelect(event: any) {
     const selectedValue = event.target.value;
     if (selectedValue) {
       // Naviga alla cartella selezionata
-      console.log('Cartella selezionata:', selectedValue);
+      console.log('Cartella selezionata by rullo:', selectedValue);
       // this.router.navigate(['/mail', selectedValue]);
     }
 }
 
  onFolderClick(key: string) {
-    console.log('Cartella selezionata (lista):', key);
+    console.log('Cartella selezionata by list:', key);
     // this.router.navigate(['/folder', key]);
   }
 }

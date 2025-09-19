@@ -1,4 +1,4 @@
-.account_container {
+.header__account-container {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -6,20 +6,19 @@
     font-family: Arial, sans-serif;
 }
 
-.icon_settings {
-border: 0;
-background-color: transparent;
+.header__settings-icon {
+
 height: 24px;
 width: 24px;
 cursor: pointer;
 }
 
-.icon_nav {
+.header__user-avatar {
     width: 64px;
     height: 64px;
 }
 
-#nick {
+.header__username {
     margin: 0;
     color: #333;
     font-size: 24px;
@@ -27,16 +26,17 @@ cursor: pointer;
 
 /* Stili responsive */
 @media (max-width: 768px) {
-    .account_container {
+    .header__account-container {
         gap: 4px;
     }
     
-    .icon_nav {
+    .header__user-avatar {
+        margin: 0;
         width: 24px;
         height: 24px;
     }
 
-    #nick {
+    .header__username {
         font-size: 16px;
     }
 

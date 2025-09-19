@@ -1,54 +1,61 @@
-<app-navbar-actions></app-navbar-actions>
+<aside>
+  <app-navbar-actions></app-navbar-actions>
 
-<!-- Select per mobile/tablet -->
-<select *ngIf="!(vp.isDesktop$ | async)"
-        class="folder-select"
-        (change)="onFolderSelect($event)">
-  <option value="">Seleziona cartella...</option>
+  <!-- Select per mobile/tablet -->
+  <select *ngIf="!(viewportServ.isDesktop$ | async)" class="folder-select" (change)="onFolderSelect($event)">
+    <option value="">Seleziona cartella...</option>
 
-  <optgroup label="Folder List">
-    <option value="inbox">Inbox</option>
-    <option value="draft">Draft</option>
-    <option value="sent">Sent</option>
-    <option value="trash">Trash</option>
-  </optgroup>
+    <optgroup label="Folder List">
+      <option value="inbox">Inbox</option>
+      <option value="draft">Draft</option>
+      <option value="sent">Sent</option>
+      <option value="trash">Trash</option>
+    </optgroup>
 
-  <optgroup label="Custom List">
-    <option value="spam">Spam</option>
-    <option value="universita">Università</option>
-    <option value="lavoro">Lavoro</option>
-  </optgroup>
-</select>
+    <optgroup label="Custom List">
+      <option value="spam">Spam</option>
+      <option value="universita">Università</option>
+      <option value="lavoro">Lavoro</option>
+    </optgroup>
+  </select>
 
-<!-- Folder visibili su desktop -->
-<div *ngIf="(vp.isDesktop$ | async)" class="folders-desktop">
-  <p class="list_title">Folder List</p>
-  <ul class="list_sidebar">
-    <li (click)="onFolderClick('inbox')">
-      <img class="icon_mini" src="images/inbox64.png" alt="Inbox"> <span>Inbox</span>
-    </li>
-    <li (click)="onFolderClick('draft')">
-      <img class="icon_mini" src="images/draft64.png" alt="Draft"> <span>Draft</span>
-    </li>
-    <li (click)="onFolderClick('sent')">
-      <img class="icon_mini" src="images/sent64.png" alt="Sent"> <span>Sent</span>
-    </li>
-    <li (click)="onFolderClick('trash')">
-      <img class="icon_mini" src="images/trash64.png" alt="Trash"> <span>Trash</span>
-    </li>
-  </ul>
+  <!-- Folder visibili su desktop -->
+  <!-- pipe async evita ondestroy con unsubscribe (subscribe/ unsubscribe automatico) "Reactive Templates" -->
 
-  <p class="list_title">Custom List</p>
-  <ul class="list_sidebar">
-    <li (click)="onFolderClick('spam')">
-      <img class="icon_mini" src="images/privacy64.png" alt="Spam"> <span>Spam</span>
-    </li>
-    <li (click)="onFolderClick('universita')">
-      <img class="icon_mini" src="images/privacy64.png" alt="Università"> <span>Università</span>
-    </li>
-    <li (click)="onFolderClick('lavoro')">
-      <img class="icon_mini" src="images/privacy64.png" alt="Lavoro"> <span>Lavoro</span>
-    </li>
-  </ul>
-</div>
+  <div *ngIf="(viewportServ.isDesktop$ | async)" class="navbar__folders">
+    <nav aria-label="Folder di sistema">
+      <p class="navbar__group-title">Folder List</p>
+      <ul class="navbar__list">
+        <li (click)="onFolderClick('inbox')">
+          <img class="icon-sm" src="images/inbox64.png" alt="Inbox"> <span>Inbox</span>
+        </li>
+        <li (click)="onFolderClick('draft')">
+          <img class="icon-sm" src="images/draft64.png" alt="Draft"> <span>Draft</span>
+        </li>
+        <li (click)="onFolderClick('sent')">
+          <img class="icon-sm" src="images/sent64.png" alt="Sent"> <span>Sent</span>
+        </li>
+        <li (click)="onFolderClick('trash')">
+          <img class="icon-sm" src="images/trash64.png" alt="Trash"> <span>Trash</span>
+        </li>
+      </ul>
+    </nav>
 
+
+    <nav aria-label="Folder personalizzati">
+      <p class="navbar__group-title">Custom List</p>
+      <ul class="navbar__list">
+        <li (click)="onFolderClick('spam')">
+          <img class="icon-sm" src="images/privacy64.png" alt="Spam"> <span>Spam</span>
+        </li>
+        <li (click)="onFolderClick('universita')">
+          <img class="icon-sm" src="images/privacy64.png" alt="Università"> <span>Università</span>
+        </li>
+        <li (click)="onFolderClick('lavoro')">
+          <img class="icon-sm" src="images/privacy64.png" alt="Lavoro"> <span>Lavoro</span>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+</aside>
