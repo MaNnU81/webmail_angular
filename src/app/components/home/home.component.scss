@@ -1,57 +1,35 @@
-
-
-
 .app-container {
   display: grid;
   grid-template-areas:
-    "headerSup headerSup"
+    "header_home header_home"
     "navbar mailView"
     "navbar mailView";
   grid-template-rows: auto auto 1fr;
-  grid-template-columns: 300px 1fr;
-  height: 100vh;
-  gap: 0;
-}
+  grid-template-columns: 300px auto;
+//   height: 100vh;
+ }
 
 .app-header {
-  grid-area: headerSup;
-  background-color: #f8f9fa;
-  position: relative; 
-  width: 100%;
-
+  position: relative;
+ grid-area: header_home;
 }
-
-
 .app-mailView {
     grid-area: mailView;
     overflow-y: auto;
 }
-
-
 .app-navbar {
   grid-area: navbar;
-  background-color: #e9ecef;
-  border-bottom: 1px solid #dee2e6;
 }
-
-
-
-
-
 
 @media (max-width: 768px) {
 
-
   .app-container {
     grid-template-areas:
-      "headerSup"
+      "header_home"
       "navbar"
       "mailView";
     grid-template-columns: auto ;
     grid-template-rows: 60px auto auto;
    
   }
-  
-
-
 }

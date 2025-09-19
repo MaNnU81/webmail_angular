@@ -4,9 +4,9 @@ import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-account-display',
   imports: [RouterLink],
-  templateUrl: './account-display.component.html',
-  styleUrl: './account-display.component.scss'
+  templateUrl: './header-account.component.html',
+  styleUrl: './header-account.component.scss'
 })
-export class AccountDisplayComponent {
+export class HeaderAccountComponent {
 router = inject(Router);
 }

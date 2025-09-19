@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountDisplayComponent } from './account-display.component';
+import { HeaderTitleComponent } from './header-title.component';
 
-describe('AccountDisplayComponent', () => {
-  let component: AccountDisplayComponent;
-  let fixture: ComponentFixture<AccountDisplayComponent>;
+describe('TitleComponent', () => {
+  let component: HeaderTitleComponent;
+  let fixture: ComponentFixture<HeaderTitleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AccountDisplayComponent]
+      imports: [HeaderTitleComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AccountDisplayComponent);
+    fixture = TestBed.createComponent(HeaderTitleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
