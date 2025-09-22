@@ -3,28 +3,28 @@
   <div>
     <div class="mailcard__row">
       <!-- checklist (solo layout, disattivata) -->
-      <input class="mailcard__check .mailcard__cell--preview" type="checkbox">
+      <input class="mailcard__check mailcard__cell--preview" type="checkbox">
 
       <!-- data -->
       <span class="mailcard__cell">
-        {{ item.data | date:'dd-MMM' | uppercase }}
+        {{ item.createdAt | date:'dd-MMM' | uppercase }}
       </span>
 
       <!-- mittente (renderizza &#64; come @) -->
-      <span class="mailcard__cell" [innerHTML]="item.mittente"></span>
+      <span class="mailcard__cell" [innerHTML]="item.from"></span>
 
       <!-- oggetto -->
       <span class="mailcard__cell">
-        Oggetto: {{ item.oggetto }}
+        Oggetto: {{ item.subject }}
       </span>
 
       <!-- anteprima -->
-      <span class="mailcard__cell .mailcard__cell--preview">
-        Anteprima: {{ item.anteprima }}
+      <span class="mailcard__cell mailcard__cell--preview">
+        Anteprima: {{ item.preview }}
       </span>
 
       <!-- checkbox elimina (solo layout, disattivata) -->
-      <input class=".mailcard__delete" type="checkbox">
+      <input class="mailcard__delete" type="checkbox">
 
       <!-- icona trash (solo display) -->
       <img class="icon_mini mailcard__icon" src="images/trash64.png" alt="Trash" aria-hidden="true">

@@ -1,10 +1,19 @@
 <main class="mailview">
   <div class="mailview__top">
     <div role="toolbar" class="mailview__mini-bar">
-      <!-- <span class="title_msg">Barra di navigazione</span> -->
-      <span class="mailview__total">12 messagi di 228</span>
-      <img class="icon-sm" src="images/prev64.png" alt="prev">
-      <img class="icon-sm" src="images/next64.png" alt="next">
+
+      <span class="mailview__total">
+        <ng-container *ngIf="total > 0; else zero">
+          {{ showingFrom }}–{{ showingTo }} di {{ total }}
+        </ng-container>
+        <ng-template #zero>0 di 0</ng-template>
+      </span>
+
+      <button (click)="prev()" [disabled]="pageIndex === 0"> <img class="icon-sm" src="images/prev64.png"
+          alt="prev"></button>
+      <button (click)="next()" [disabled]="(pageIndex + 1) * pageSize >= total"><img class="icon-sm"
+          src="images/next64.png" alt="next"> </button>
+
     </div>
 
     <div class="mailview__mini-bar--secondary">

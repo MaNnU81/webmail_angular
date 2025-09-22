@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Mockmail } from '../../model/mockmail';
 import { CommonModule, NgClass } from '@angular/common';
-import { MailCardComponent } from '../mail-card/mail.component';
+import { MailCardComponent } from '../mail-card/mail-card.component';
 
 
 

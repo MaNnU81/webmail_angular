@@ -1,6 +1,8 @@
 .icon-sm {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: 0px;
 }
 
 .mailview {
@@ -47,7 +49,7 @@
 
 .mailview__total {
   margin-left: auto;
-  font-size: 10px;
+  font-size: 20px;
   line-height: 12px;
 }
 

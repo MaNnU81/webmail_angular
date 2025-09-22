@@ -1,12 +1,17 @@
+
+export type MockmailmailFolder = 'inbox' | 'sent' | 'drafts' | 'trash';
+
 export interface Mockmail {
-    data: string;
-    mittente: string;
-    oggetto: string;
-    anteprima: string;
-    id?: number; 
-    destinatario?: string; 
+    from: string;
+    subject: string;
+    preview: string;
+    id: number; 
+    to?: string; 
     body: string; 
     isRead: boolean;
+    folder?: MockmailmailFolder;
+    createdAt: number; 
+   
 }
 
 
