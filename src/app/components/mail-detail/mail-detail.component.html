@@ -1,8 +1,8 @@
-<article id="centralDown" *ngIf="mail">
-  <div class="mail_head">
-    <div class="mail_subject">Oggetto: {{ mail.oggetto }}</div>
+<article *ngIf="mail">
+  <div class="maildetail__head">
+    <div class="maildetail__subject">Oggetto: {{ mail.oggetto }}</div>
 
-    <div class="mail_meta">
+    <div class="maildetail__meta">
       <span>Da: {{ mail.mittente }}</span> 
        <!-- fare pipe  <span>Da: {{ extractName(mail.mittente) }}  {{ extractEmail(mail.mittente) }}</span> -->
       <span> • A: {{ mail.destinatario }}</span>
@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div class="real_message">
+  <div class="maildetail__body">
     {{ mail.body }}
   </div>
 </article>

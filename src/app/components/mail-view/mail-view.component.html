@@ -1,32 +1,32 @@
-<div class="message-list">
-  <div class="message-list-header">
-    <div class="mini_bar">
+<main class="mailview">
+  <div class="mailview__top">
+    <div role="toolbar" class="mailview__mini-bar">
       <!-- <span class="title_msg">Barra di navigazione</span> -->
-      <span class="tot_msg">12 messagi di 228</span>
-      <img class="icon_mini icon_msg" src="images/prev64.png" alt="prev">
-      <img class="icon_mini icon_msg" src="images/next64.png" alt="next">
+      <span class="mailview__total">12 messagi di 228</span>
+      <img class="icon-sm" src="images/prev64.png" alt="prev">
+      <img class="icon-sm" src="images/next64.png" alt="next">
     </div>
 
-    <div class="down_mini_bar">
-      <input id="selectAll" class="anteprima " type="checkbox">
-      <span class="filter_msg div_data">Data:</span>
-      <span class="filter_msg">Mittente:</span>
-      <span class="filter_msg">Oggetto:</span>
-      <span class="filter_msg prova">Anteprima:</span>
+    <div class="mailview__mini-bar--secondary">
+      <input id="selectAll" type="checkbox">
+      <span class="mailview__column">Data:</span>
+      <span class="mailview__column">Mittente:</span>
+      <span class="mailview__column">Oggetto:</span>
+      <span class="mailview__column mailview__column--preview">Anteprima:</span>
       <input id="deleteAllMail" class="deleteMail deleteAllMail" type="checkbox">
-      <img class="icon_mini " src="images/trash64.png" alt="Trash">
+      <img class="icon-sm" src="images/trash64.png" alt="Trash">
     </div>
 
   </div>
 
-  <div class="message-list-content">
+  <section class="mailview__content">
     <app-mail-list [selectedMail]="selectedMail" (mailSelected)="onMailSelected($event)"
       [mails]="mails"></app-mail-list>
-  </div>
+  </section>
 
   <app-mail-detail [mail]="selectedMail"></app-mail-detail>
 
 
   <p *ngIf="loading">Caricamento…</p>
   <p *ngIf="error" class="error">{{ error }}</p>
-</div>
+</main>

@@ -4,12 +4,12 @@
   object-fit: contain;
 }
 
-#centralUp.mail-selected .single_msg {
+.mailcard.mail-selected .mailcard__row {
   // background-color: #08e9264d !important;
   border: 3px solid #0d09f3 !important;
 }
 
-.single_msg {
+.mailcard__row {
   display: grid;
   grid-template-columns: auto 60px 1fr 1fr 1fr auto auto;
   align-items: center;
@@ -20,7 +20,7 @@
   transition: background-color 0.2s ease, border-left 0.2s ease;
 }
 
-.central_msg {
+.mailcard__cell{
   flex: 1 1 0;
   min-width: 0;
   overflow: hidden;
@@ -30,29 +30,29 @@
   align-items: center;
 }
 
-.checkmail, .deleteMail {
+.mailcard__check, .mailcard__delete {
   /* Stili per checkbox */
   width: 16px;
   height: 16px;
 }
 
-.anteprima {
+.mailcard__cell--preview {
   /* Stili specifici per anteprima */
   font-style: italic;
   color: #666;
 }
 
-.single_msg img.filter_msg {
+.mailcard__row img.filter_msg {
   border-right: 0;
   opacity: 0.6;
 }
 
-.single_msg:hover {
+.mailcard__row:hover {
   background-color: #0b84ee81;
   cursor: pointer;
 }
 
-  .single_msg .central_msg:not(:first-of-type) {
+  .mailcard__row .mailcard__cell:not(:first-of-type) {
     font-size: 24px;
   }
 
@@ -75,7 +75,7 @@
 }
 
 @media (max-width: 768px) {
-  .single_msg {
+  .mailcard__row {
     grid-template-columns: auto 0.8fr 1.2fr 1fr auto auto;
     gap: 2px;
     padding: 0 4px;
@@ -83,44 +83,44 @@
   }
 
   /* Nascondi la colonna anteprima */
-  .single_msg .central_msg.anteprima {
+  .mailcard__row .mailcard__cell.mailcard__cell--preview {
     display: none;
   }
 
   /* Formato data compatto per mobile */
-  .single_msg .central_msg:first-of-type {
+  .mailcard__row .mailcard__cell:first-of-type {
     font-size: 10px;
     min-width: 45px;
     text-transform: uppercase;
   }
 
   /* Riduci font size per gli altri campi */
-  .single_msg .central_msg:not(:first-of-type) {
+  .mailcard__row .mailcard__cell:not(:first-of-type) {
     font-size: 16px;
   }
 
   /* Riduci dimensioni checkbox e icone */
-  .checkmail, .deleteMail {
+  .mailcard__check, .mailcard__delete {
     width: 14px;
     height: 14px;
   }
 
-  .single_msg img.filter_msg {
+  .mailcard__row img.mailcard__icon {
     width: 16px;
     height: 16px;
   }
 
   /* Migliora hover per touch */
-  .single_msg:hover {
+  .mailcard__row:hover {
     background-color: #e3f2fd;
   }
 
-  .central_msg:first-of-type {
+  .mailcard__cell:first-of-type {
     font-weight: 600;
   }
 
   /* Stile selected per mobile */
-  #centralUp.mail-selected .single_msg {
+  .mailcard.mail-selected .mailcard__row {
     border-left-width: 2px;
   }
 }

@@ -1,13 +1,9 @@
-.icon_mini {
+.icon-sm {
   width: 20px;
   height: 20px;
-  object-fit: contain;
-
 }
 
-
-
-.message-list {
+.mailview {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -15,21 +11,19 @@
   border-right: 1px solid #14518c;
 }
 
-.message-list-header {
+.mailview__top {
   flex: 0 0 auto;
   border-bottom: 1px solid #14518c;
-
 }
 
-.message-list-content {
+.mailview__content {
   flex: 1 1 auto;
   overflow-y: auto;
   min-height: 0;
   max-height: 40vh;
 }
 
-
-.mini_bar {
+.mailview__mini-bar {
   height: 28px;
   display: flex;
   align-items: center;
@@ -38,10 +32,9 @@
   overflow: hidden;
   border-top: 1px solid #14518c;
   position: relative;
-
 }
 
-.down_mini_bar {
+.mailview__mini-bar--secondary {
   align-items: center;
   font-size: 18px;
   display: grid;
@@ -52,29 +45,19 @@
   border-top: 1px solid #14518c;
 }
 
-
-
-
-.tot_msg {
+.mailview__total {
   margin-left: auto;
   font-size: 10px;
   line-height: 12px;
 }
 
-.filter_msg {
+.mailview__column {
   border-right: 1px solid #14518c;
   align-items: center;
   font-size: 18px;
-
 }
 
-
-
-
-
-
-
-.mini_bar img.filter_msg {
+.mailview__mini-bar--secondary img.mailview__column {
   border-right: 0;
 }
 
@@ -82,26 +65,23 @@
 
 @media (max-width: 768px) {
 
-  .down_mini_bar {
+  .mailview__mini-bar--secondary {
     grid-template-columns: auto 0.8fr 1.2fr 1fr auto auto;
     gap: 2px;
     padding: 0 4px;
     height: 28px;
   }
 
-  .prova {
+  .mailview__column--preview{
     display: none;
   }
 
-
-
-  .filter_msg {
+  .mailview__column{
     font-size: 16px;
     line-height: 14px;
   }
 
-  .message-list-content {
-
+  .mailview__content {
     min-height: 0;
     max-height: 30vh;
   }
