@@ -25,6 +25,4 @@ export class MailListComponent {
  onMailClick(mail: Mockmail) {
   this.mailSelected.emit(mail);
  }
-
-
 }

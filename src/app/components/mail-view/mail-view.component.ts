@@ -33,15 +33,28 @@ export class MailViewComponent  {
     this.refreshTotal(); // modo semplice per avere 'total' su MockAPI
   }
 
-  loadPage(pageIndex: number, pageSize: number): void {
-    const page = pageIndex + 1; // MockAPI è 1-based
-    this.mailSvc.getMails$({
-      page, limit: pageSize,
-      folder: 'inbox',
-      sortBy: 'createdAt',
-      order: 'desc'
-    }).subscribe(list => this.mails = list);
-  }
+loadPage(pageIndex: number, pageSize: number): void {
+  const page = pageIndex + 1; // MockAPI è 1-based
+  this.loading = true;
+  this.mailSvc.getMails$({ page, limit: pageSize, folder: 'inbox' })
+    .subscribe({
+      next: (list) => {
+        this.mails = list;
+
+        // ✅ auto-selezione SOLO se non c'è già una selezione
+        if (!this.selectedMail && list.length) {
+          this.selectedMail = list[0];
+        }
+      },
+      error: (err) => {
+        this.error = 'Errore nel caricamento';
+      },
+      complete: () => {
+        this.loading = false;
+      }
+    });
+}
+
 
   prev() {
   if (this.pageIndex > 0) {
@@ -68,7 +81,9 @@ next() {
 
 
 
-  get showingFrom(): number {
+
+///getter per pagination
+get showingFrom(): number {
   return this.total === 0 ? 0 : this.pageIndex * this.pageSize + 1;
 }
 get showingTo(): number {

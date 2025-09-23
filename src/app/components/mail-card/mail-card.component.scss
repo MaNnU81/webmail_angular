@@ -5,7 +5,7 @@
 }
 
 .mailcard.mail-selected .mailcard__row {
-  // background-color: #08e9264d !important;
+  
   border: 3px solid #0d09f3 !important;
 }
 
@@ -31,13 +31,11 @@
 }
 
 .mailcard__check, .mailcard__delete {
-  /* Stili per checkbox */
   width: 16px;
   height: 16px;
 }
 
 .mailcard__cell--preview {
-  /* Stili specifici per anteprima */
   font-style: italic;
   color: #666;
 }
@@ -58,7 +56,7 @@
 
   :host {
   display: block;
-  border-bottom: 1px solid #e6e6e6; /* se ti serve */
+  border-bottom: 1px solid #e6e6e6; 
 }
 
 /* Mail LETTA */
@@ -76,7 +74,7 @@
 
 @media (max-width: 768px) {
   .mailcard__row {
-    grid-template-columns: auto 0.8fr 1.2fr 1fr auto auto;
+    grid-template-columns:  0.8fr 1.2fr 1fr auto auto;
     gap: 2px;
     padding: 0 4px;
     height: 28px;
@@ -87,22 +85,23 @@
     display: none ; 
   }
 
-  /* Formato data compatto per mobile */
+ 
   .mailcard__row .mailcard__cell:first-of-type {
     font-size: 10px;
     min-width: 45px;
     text-transform: uppercase;
   }
 
-  /* Riduci font size per gli altri campi */
+  
   .mailcard__row .mailcard__cell:not(:first-of-type) {
     font-size: 16px;
   }
 
-  /* Riduci dimensioni checkbox e icone */
+ 
   .mailcard__check, .mailcard__delete {
     width: 14px;
     height: 14px;
+      margin-left: auto;
   }
 
   .mailcard__row img.mailcard__icon {
@@ -110,13 +109,17 @@
     height: 16px;
   }
 
-  /* Migliora hover per touch */
+
   .mailcard__row:hover {
     background-color: #e3f2fd;
   }
 
   .mailcard__cell:first-of-type {
     font-weight: 600;
+  }
+
+  .mailcard {
+    padding: 0 12px;
   }
 
   /* Stile selected per mobile */
