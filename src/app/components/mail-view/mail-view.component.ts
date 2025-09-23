@@ -69,11 +69,20 @@ next() {
   }
 }
 
-  onMailSelected(mail: Mockmail) {
+onMailSelected(mail: Mockmail) {
+  if (!mail.isRead) {
+    const updatedMail = { ...mail, isRead: true };
+    this.selectedMail = updatedMail;
+    this.mails = this.mails.map(m =>
+      m.id === mail.id ? updatedMail : m
+    );
+  } else {
+    // Se la mail è GIÀ letta, usa semplicemente l'oggetto originale
     this.selectedMail = mail;
   }
+};
 
-  private refreshTotal(): void {
+  public refreshTotal(): void {
     // MockAPI non restituisce sempre il totale: prendo "un sacco" di elementi e conto
     this.mailSvc.getMails$({ folder: 'inbox', page: 1, limit: 1000 })
       .subscribe(all => this.total = all.length);
