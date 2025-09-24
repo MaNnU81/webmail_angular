@@ -4,8 +4,7 @@ import { MailDetailComponent } from "../mail-detail/mail-detail.component";
 import { MailFolder, Mockmail } from '../../model/mockmail';
 import { NgIf, AsyncPipe } from '@angular/common';
 import { MailDataService } from '../../services/mail-data.service';
-import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, catchError, combineLatest, map, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, firstValueFrom, map, of, scan, startWith, Subject, switchMap, tap } from 'rxjs';
 
 
 @Component({
@@ -19,125 +18,127 @@ export class MailViewComponent {
   selectedMail: Mockmail | null = null;
   loading = false;
   error: string | null = null;
-  private route = inject(ActivatedRoute);
+  selectedMailId: string | null = null;
 
   // paginator
   pageIndex = 0;
   pageSize = 10;
   total = 0;
+
   constructor(private mailDataServ: MailDataService) { }
 
-
-  //  Observable che emette ogni volta che cambiano folder/pagina
+  // ---- STATE: folder + pagina (solo local subjects)
   private folder$ = new BehaviorSubject<MailFolder>('inbox');
- private folderParams$ = this.route.params.pipe(
-    map(params => params['folder'] as MailFolder || 'inbox'),
-   tap(folder => {
-    this.pageIndex = 0;
-    this.refreshTotal(folder); 
-    this.pageParams$.next({ pageIndex: 0, pageSize: this.pageSize });
-  })
-  );
-  private pageParams$ = new BehaviorSubject<{ pageIndex: number, pageSize: number }>({
+  private pageParams$ = new BehaviorSubject<{ pageIndex: number; pageSize: number }>({
     pageIndex: 0,
     pageSize: 10
   });
 
-  changeFolder(folder: MailFolder) {
-    console.log('Changing folder to:', folder);
-    this.pageIndex = 0;
-    this.refreshTotal(folder);
-    this.folder$.next(folder);
-    this.pageParams$.next({ 
-      pageIndex: 0, 
-      pageSize: this.pageSize 
-    });
-  }
+  // ---- PATCH REATTIVE: read/unread (id è string)
+  private readPatch$ = new Subject<{ id: string; changes: Partial<Mockmail> }>();
+  private readState$ = this.readPatch$.pipe(
+    scan(
+      (
+        acc: Record<string, Partial<Mockmail>>,
+        p: { id: string; changes: Partial<Mockmail> }
+      ) => ({
+        ...acc,
+        [p.id]: { ...(acc[p.id] ?? {}), ...p.changes }
+      }),
+      {} as Record<string, Partial<Mockmail>>
+    ),
+    startWith({} as Record<string, Partial<Mockmail>>)
+  );
 
-  mails$ = combineLatest([this.folder$, this.pageParams$]).pipe(
+  // ---- STREAM DATI BASE
+  private baseMails$ = combineLatest([this.folder$, this.pageParams$]).pipe(
     switchMap(([folder, { pageIndex, pageSize }]) => {
       this.loading = true;
-      return this.mailDataServ.getMails$({
-        page: pageIndex + 1,
-        limit: pageSize,
-        folder
-      }).pipe(
-        tap(mails => {
-          this.loading = false;
-          this.mails = mails; // Aggiorna l'array mails
-
-
-          // GESTIONE SELECTEDMAIL:
-          if (mails.length > 0) {
-            // Se non c'è selectedMail o la mail selezionata non è nella nuova lista
-            if (!this.selectedMail || !mails.find(m => m.id === this.selectedMail!.id)) {
-              this.selectedMail = mails[0]; // Seleziona la prima
-            }
-          } else {
-            this.selectedMail = null; // Nessuna mail
-          }
-        }),
-        catchError(error => {
-          this.loading = false;
-          this.error = 'Errore nel caricamento';
-          return of([]);
-        })
-      );
+      return this.mailDataServ
+        .getMails$({ page: pageIndex + 1, limit: pageSize, folder })
+        .pipe(
+          tap(() => {
+            this.loading = false;
+            this.error = null;
+          }),
+          catchError(() => {
+            this.loading = false;
+            this.error = 'Errore nel caricamento';
+            return of<Mockmail[]>([]);
+          })
+        );
     })
   );
+
+  // ---- VIEW STREAM: applica patch prima del render, mantieni cache per i getter
+  mails$ = combineLatest([this.baseMails$, this.readState$]).pipe(
+    map(([mails, state]) => mails.map(m => (state[m.id] ? { ...m, ...state[m.id] } : m))),
+    tap(mails => {
+      this.mails = mails;
+
+      if (mails.length === 0) {
+        this.selectedMail = null;
+        return;
+      }
+
+      
+      if (this.selectedMailId) {
+        this.selectedMail = mails.find(m => m.id === this.selectedMailId) ?? mails[0];
+        return;
+      }
+
+      
+      if (!this.selectedMail || !mails.some(m => m.id === this.selectedMail!.id)) {
+        this.selectedMail = mails[0];
+      }
+    })
+  );
+
+  // ---- HANDLERS
+  changeFolder(folder: MailFolder) {
+    this.pageIndex = 0;
+    this.folder$.next(folder);
+    this.pageParams$.next({ pageIndex: 0, pageSize: this.pageSize });
+    this.refreshTotal(folder);
+  }
 
   prev() {
     if (this.pageIndex > 0) {
       this.pageIndex--;
-      this.pageParams$.next({
-        pageIndex: this.pageIndex,
-        pageSize: this.pageSize
-      });
+      this.pageParams$.next({ pageIndex: this.pageIndex, pageSize: this.pageSize });
     }
   }
+
   next() {
-  const currentFolder = this.route.snapshot.params['folder'] || 'inbox';
-  if (this.showingTo < this.total) {
-    this.pageIndex++;
-    this.pageParams$.next({
-      pageIndex: this.pageIndex,
-      pageSize: this.pageSize
-    });
-    // Aggiorna total se necessario
-    this.refreshTotal(currentFolder);
+    if (this.showingTo < this.total) {
+      this.pageIndex++;
+      this.pageParams$.next({ pageIndex: this.pageIndex, pageSize: this.pageSize });
+      this.refreshTotal(this.folder$.value);
+    }
   }
-}
 
   onMailSelected(mail: Mockmail) {
+    this.selectedMailId = mail.id;
+    this.selectedMail = this.mails.find(m => m.id === mail.id) ?? mail;
     if (!mail.isRead) {
-      const updatedMail = { ...mail, isRead: true };
-      this.selectedMail = updatedMail;
-      this.mails = this.mails.map(m =>
-        m.id === mail.id ? updatedMail : m
-      );
-    } else {
-      // Se la mail è GIÀ letta, usa semplicemente l'oggetto originale
-      this.selectedMail = mail;
+      this.readPatch$.next({ id: mail.id, changes: { isRead: true } });
     }
-  };
+  }
 
-public refreshTotal(folder: MailFolder): void {
-  this.mailDataServ.getMails$({ folder, page: 1, limit: 500 }) // ✅ Folder corrente!
-    .subscribe(allMails => {
-      this.total = allMails.length;
-      console.log(`Total mail in ${folder}:`, this.total); // Debug
-    });
-}
+  // ---- TOTAL con firstValueFrom
+  public async refreshTotal(folder: MailFolder): Promise<void> {
+    const allMails = await firstValueFrom(
+      this.mailDataServ.getMails$({ folder, page: 1, limit: 500 })
+    );
+    this.total = allMails.length;
+    console.log(`Total mail in ${folder}:`, this.total);
+  }
 
-
-
-
-  ///getter per pagination
+  // ---- GETTER per pagination
   get showingFrom(): number {
     return this.total === 0 ? 0 : this.pageIndex * this.pageSize + 1;
   }
   get showingTo(): number {
-    // usa la lunghezza reale della pagina corrente
     const end = this.pageIndex * this.pageSize + (this.mails?.length ?? 0);
     return Math.min(this.total, end);
   }
@@ -145,5 +146,3 @@ public refreshTotal(folder: MailFolder): void {
     return this.mails?.length ?? 0;
   }
 }
-
-

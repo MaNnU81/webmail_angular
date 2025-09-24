@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './mail-card.component.scss'
 })
 export class MailCardComponent {
- @Input() item!: Mockmail;
+ @Input() mail!: Mockmail;
   @Input() isSelected: boolean = false;
   
   

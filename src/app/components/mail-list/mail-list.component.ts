@@ -14,13 +14,13 @@ import { MailCardComponent } from '../mail-card/mail-card.component';
 })
 export class MailListComponent {
   @Input({ required: true }) mails: Mockmail[] = [];
-  trackByIndex = (i: number) => i;
+  trackById = (_: number, m: Mockmail) => m.id;
 
 @Input() selectedMail: Mockmail | null = null;
 
   //outup onselected 
 
- @Output() mailSelected = new  EventEmitter<any>();
+ @Output() mailSelected = new  EventEmitter<Mockmail>();
 
  onMailClick(mail: Mockmail) {
   this.mailSelected.emit(mail);
