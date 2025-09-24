@@ -1,4 +1,4 @@
-import { Component, inject, } from '@angular/core';
+import { Component, inject, OnInit, } from '@angular/core';
 import { MailListComponent } from "../mail-list/mail-list.component";
 import { MailDetailComponent } from "../mail-detail/mail-detail.component";
 import { MailFolder, Mockmail } from '../../model/mockmail';
@@ -13,7 +13,7 @@ import { BehaviorSubject, catchError, combineLatest, firstValueFrom, map, of, sc
   templateUrl: './mail-view.component.html',
   styleUrl: './mail-view.component.scss'
 })
-export class MailViewComponent {
+export class MailViewComponent implements OnInit{
   mails: Mockmail[] = [];
   selectedMail: Mockmail | null = null;
   loading = false;
@@ -24,6 +24,12 @@ export class MailViewComponent {
   pageIndex = 0;
   pageSize = 10;
   total = 0;
+
+
+  ngOnInit(): void {
+    // inizializza il totale per la folder iniziale
+    this.refreshTotal(this.folder$.value);
+  }
 
   constructor(private mailDataServ: MailDataService) { }
 
@@ -113,7 +119,7 @@ export class MailViewComponent {
     if (this.showingTo < this.total) {
       this.pageIndex++;
       this.pageParams$.next({ pageIndex: this.pageIndex, pageSize: this.pageSize });
-      this.refreshTotal(this.folder$.value);
+      
     }
   }
 

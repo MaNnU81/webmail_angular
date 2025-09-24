@@ -1,7 +1,7 @@
 <section aria-label="Elenco messaggi">
   <app-mail-card *ngFor="let mail of mails; trackBy: trackById"
     [mail]="mail" 
-     [isSelected]="selectedMail?.id === mail.id"
+    [isSelected]="selectedMail?.id === mail.id"
     (click)="onMailClick(mail)"
     [ngClass]="{ 'is-read': mail.isRead, 'is-unread': !mail.isRead }"></app-mail-card>
 </section>
