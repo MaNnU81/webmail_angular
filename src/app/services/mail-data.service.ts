@@ -2,9 +2,9 @@ import { HttpClient,  HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import {  Observable } from 'rxjs';
-import { Mockmail, MockmailmailFolder } from '../model/mockmail';
+import { Mockmail, MailFolder } from '../model/mockmail';
 
-const FOLDERS: MockmailmailFolder[]= ['inbox', 'sent', 'drafts', 'trash'];
+const SYSTEM_FOLDERS: MailFolder[]= ['inbox', 'sent', 'draft', 'trash'];
 
 
 @Injectable({
@@ -24,10 +24,15 @@ private endpoint(path: string = ''): string {
   }return `${this.apiBase}/${this.resource}${path}`;
 }
 
+isSystemFolder(folder: MailFolder): boolean {
+  return SYSTEM_FOLDERS.includes(folder as any);
+}
+
+
  getMails$(opts: {
     page?: number;               
     limit?: number;               
-    folder?: MockmailmailFolder;         
+    folder?: MailFolder;         
   } = {}): Observable<Mockmail[]> {
     let params = new HttpParams();
     if (opts.page)   params = params.set('page', String(opts.page));
@@ -36,8 +41,6 @@ private endpoint(path: string = ''): string {
     return this.http.get<Mockmail[]>(this.endpoint(), { params });
   }
  
-
-  
   getMail$(id: string): Observable<Mockmail> {
     return this.http.get<Mockmail>(this.endpoint(`/${id}`));
   }

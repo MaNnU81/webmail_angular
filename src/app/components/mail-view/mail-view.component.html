@@ -30,7 +30,7 @@
 
   <section class="mailview__content">
     <app-mail-list [selectedMail]="selectedMail" (mailSelected)="onMailSelected($event)"
-      [mails]="mails"></app-mail-list>
+    [mails]="(mails$ | async) ?? []"></app-mail-list>
   </section>
 
   <app-mail-detail [mail]="selectedMail"></app-mail-detail>

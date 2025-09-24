@@ -1,5 +1,7 @@
 
-export type MockmailmailFolder = 'inbox' | 'sent' | 'drafts' | 'trash';
+export type SystemMailFolder  = 'inbox' | 'sent' | 'draft' | 'trash';
+export type CustomMailFolder = string;
+export type MailFolder = SystemMailFolder | CustomMailFolder;
 
 export interface Mockmail {
     from: string;
@@ -9,7 +11,7 @@ export interface Mockmail {
     to?: string; 
     body: string; 
     isRead: boolean;
-    folder?: MockmailmailFolder;
+    folder?: MailFolder;
     createdAt: number; 
    
 }

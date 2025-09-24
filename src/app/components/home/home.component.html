@@ -1,5 +1,5 @@
 <div class="app-container">                              
     <app-header    class="app-header"></app-header>
-    <app-navbar    class="app-navbar"></app-navbar>
-    <app-mail-view class="app-mailView"></app-mail-view>
-</div>
+    <app-navbar (folderSelected)="mailView.changeFolder($event)"    class="app-navbar"></app-navbar>
+    <app-mail-view  #mailView class="app-mailView"></app-mail-view>
+</div>  
