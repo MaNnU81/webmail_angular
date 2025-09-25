@@ -13,7 +13,7 @@ export interface Mockmail {
     isRead: boolean;
     folder?: MailFolder;
     createdAt: number; 
-   
+    labels?: string[];
 }
 
 

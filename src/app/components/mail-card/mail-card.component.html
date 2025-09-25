@@ -1,9 +1,11 @@
-<div  class="mailcard" [class.mail-selected]="isSelected">
+<div class="mailcard" [class.mail-selected]="isSelected">
 
   <div>
     <div class="mailcard__row">
-      <!-- checklist (solo layout, disattivata) -->
-      <input class="mailcard__check mailcard__cell--preview" type="checkbox">
+
+      <img class=" mailcard__icon"
+        [src]="(mail.labels?.includes('starred') ? 'images/star64.png' : 'images/addstar64.png')"
+        (click)="onStarClick($event)" aria-hidden="true">
 
       <!-- data -->
       <span class="mailcard__cell">
@@ -27,7 +29,7 @@
       <input class="mailcard__delete" type="checkbox">
 
       <!-- icona trash (solo display) -->
-      <img class="icon_mini mailcard__icon" src="images/trash64.png" alt="Trash" aria-hidden="true">
+      <img class="icon_mini" src="images/trash64.png" alt="Trash" aria-hidden="true">
     </div>
 
 

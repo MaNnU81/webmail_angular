@@ -3,6 +3,7 @@
     [mail]="mail" 
     [isSelected]="selectedMail?.id === mail.id"
     (click)="onMailClick(mail)"
+    (starToggled)="onStarToggled($event)"
     [ngClass]="{ 'is-read': mail.isRead, 'is-unread': !mail.isRead }"></app-mail-card>
 </section>
 

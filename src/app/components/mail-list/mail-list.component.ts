@@ -21,8 +21,13 @@ export class MailListComponent {
   //outup onselected 
 
  @Output() mailSelected = new  EventEmitter<Mockmail>();
+ @Output() starToggled = new EventEmitter<Mockmail>();
 
  onMailClick(mail: Mockmail) {
   this.mailSelected.emit(mail);
+ }
+
+ onStarToggled(mail: Mockmail) {
+  this.starToggled.emit(mail);
  }
 }

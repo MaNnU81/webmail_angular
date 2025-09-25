@@ -33,14 +33,14 @@ export class MailViewComponent implements OnInit{
 
   constructor(private mailDataServ: MailDataService) { }
 
-  // ---- STATE: folder + pagina (solo local subjects)
+  // ---- folder + dati pagina (f5 resetta)
   private folder$ = new BehaviorSubject<MailFolder>('inbox');
   private pageParams$ = new BehaviorSubject<{ pageIndex: number; pageSize: number }>({
     pageIndex: 0,
     pageSize: 10
   });
 
-  // ---- PATCH REATTIVE: read/unread (id è string)
+  // ---- PATCH REATTIVE: read/unread 
   private readPatch$ = new Subject<{ id: string; changes: Partial<Mockmail> }>();
   private readState$ = this.readPatch$.pipe(
     scan(
@@ -130,6 +130,20 @@ export class MailViewComponent implements OnInit{
       this.readPatch$.next({ id: mail.id, changes: { isRead: true } });
     }
   }
+
+  onStarToggled(mail: Mockmail) {
+    const current = mail.labels ?? [];
+    const hasStar = current.includes('starred');
+    const nextLabels = hasStar
+    ? current.filter(l => l !== 'starred')
+    : [...current, 'starred'];
+
+    this.readPatch$.next({ id: mail.id, changes: { labels: nextLabels } });
+  }
+
+onLabelSelected(label: string) {
+  console.log('Label selezionata:', label);
+}
 
   // ---- TOTAL con firstValueFrom
   public async refreshTotal(folder: MailFolder): Promise<void> {

@@ -2,21 +2,24 @@
   <app-navbar-actions></app-navbar-actions>
 
   <!-- Select per mobile/tablet -->
-  <select *ngIf="!(viewportServ.isDesktop$ | async)" class="folder-select" (change)="onFolderSelect($event)">
+  <select *ngIf="!(viewportServ.isDesktop$ | async)" class="folder-select" (change)="onSelectChange($event)">
     <option value="">Seleziona cartella...</option>
 
-    <optgroup label="Folder List">
-      <option value="inbox">Inbox</option>
-      <option value="draft">Draft</option>
-      <option value="sent">Sent</option>
-      <option value="trash">Trash</option>
-    </optgroup>
+  <optgroup label="Folder List">
+    <option value="folder:inbox">Inbox</option>
+    <option value="folder:draft">Draft</option>
+    <option value="folder:sent">Sent</option>
+    <option value="folder:trash">Trash</option>
+  </optgroup>
 
-    <optgroup label="Custom List">
-      <option value="spam">Spam</option>
-      <option value="universita">Università</option>
-      <option value="lavoro">Lavoro</option>
-    </optgroup>
+  <optgroup label="Preferite">
+    <option value="label:starred">Mail Preferite</option>
+  </optgroup>
+
+  <optgroup label="Custom List">
+    <option value="folder:spam">Spam</option>
+    <option value="folder:universita">Università</option>
+    <option value="folder:lavoro">Lavoro</option>
   </select>
 
   <!-- Folder visibili su desktop -->
@@ -41,6 +44,15 @@
       </ul>
     </nav>
 
+    <nav aria-label="Folder preferiti">
+      <p class="navbar__group-title">Mail Preferite</p>
+
+      <ul class="navbar__list">
+        <li (click)="onLabelClick('starred')">
+          <img class="icon-sm" src="images/star64.png" alt="starred"> <span>Mail Salvate</span>
+        </li>
+      </ul>
+    </nav>
 
     <nav aria-label="Folder personalizzati">
       <p class="navbar__group-title">Custom List</p>

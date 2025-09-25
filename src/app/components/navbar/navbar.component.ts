@@ -13,11 +13,31 @@ import { MailFolder } from '../../model/mockmail';
 })
 
 export class NavbarComponent {
+  
+  @Output() folderChanged = new EventEmitter<MailFolder>();
+  @Output() folderSelected = new EventEmitter<MailFolder>();
+  @Output() labelSelected  = new EventEmitter<string>();
+
+  onSelectChange(event: Event) {
+  const raw = (event.target as HTMLSelectElement).value;
+  if (!raw) return;
+
+  const [kind, payload] = raw.split(':', 2);
+
+  if (kind === 'folder') {
+    this.folderSelected.emit(payload as MailFolder);
+  } else if (kind === 'label') {
+    this.labelSelected.emit(payload); // 'starred' (o altre label custom in futuro)
+  } else {
+    console.warn('Valore select non riconosciuto:', raw);
+  }
+}
+
  //searchmodule
   viewportServ = inject(ViewportService);
   toggleSearch() { this.viewportServ.toggleSearch(); }
-  @Output() folderChanged = new EventEmitter<MailFolder>();
-  @Output() folderSelected = new EventEmitter<MailFolder>();
+
+
 
 //mailselezionata
 onFolderSelect(event: any) {
@@ -33,4 +53,9 @@ onFolderSelect(event: any) {
     console.log('Cartella selezionata by list:', folder);
     this.folderSelected.emit(folder);
   }
+
+onLabelClick(label: string) {
+  this.labelSelected.emit(label);
+}
+  
 }
