@@ -32,12 +32,14 @@ isSystemFolder(folder: MailFolder): boolean {
  getMails$(opts: {
     page?: number;               
     limit?: number;               
-    folder?: MailFolder;         
+    folder?: MailFolder; 
+    labels?: string;            
   } = {}): Observable<Mockmail[]> {
     let params = new HttpParams();
     if (opts.page)   params = params.set('page', String(opts.page));
     if (opts.limit)  params = params.set('limit', String(opts.limit));
     if (opts.folder) params = params.set('folder', opts.folder);
+    if (opts.labels) params = params.set('labels', opts.labels);
     return this.http.get<Mockmail[]>(this.endpoint(), { params });
   }
  

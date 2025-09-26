@@ -6,6 +6,10 @@ import { NgIf, AsyncPipe } from '@angular/common';
 import { MailDataService } from '../../services/mail-data.service';
 import { BehaviorSubject, catchError, combineLatest, firstValueFrom, map, of, scan, startWith, Subject, switchMap, tap } from 'rxjs';
 
+type ViewMode =
+  | { kind: 'folder'; value: MailFolder }
+  | { kind: 'label';  value: string };
+
 
 @Component({
   selector: 'app-mail-view',
@@ -33,6 +37,8 @@ export class MailViewComponent implements OnInit{
 
   constructor(private mailDataServ: MailDataService) { }
 
+
+  private mode$ = new BehaviorSubject<ViewMode>({ kind: 'folder', value: 'inbox' });
   // ---- folder + dati pagina (f5 resetta)
   private folder$ = new BehaviorSubject<MailFolder>('inbox');
   private pageParams$ = new BehaviorSubject<{ pageIndex: number; pageSize: number }>({
@@ -57,22 +63,26 @@ export class MailViewComponent implements OnInit{
   );
 
   // ---- STREAM DATI BASE
-  private baseMails$ = combineLatest([this.folder$, this.pageParams$]).pipe(
-    switchMap(([folder, { pageIndex, pageSize }]) => {
+  private baseMails$ = combineLatest([this.mode$, this.pageParams$]).pipe(
+    switchMap(([mode, { pageIndex, pageSize }]) => {
       this.loading = true;
-      return this.mailDataServ
-        .getMails$({ page: pageIndex + 1, limit: pageSize, folder })
-        .pipe(
-          tap(() => {
-            this.loading = false;
-            this.error = null;
-          }),
-          catchError(() => {
-            this.loading = false;
-            this.error = 'Errore nel caricamento';
-            return of<Mockmail[]>([]);
-          })
-        );
+
+      const params =
+        mode.kind === 'folder'
+          ? { page: pageIndex + 1, limit: pageSize, folder: mode.value as MailFolder }
+          : { page: pageIndex + 1, limit: pageSize, labels: mode.value as string };
+
+      return this.mailDataServ.getMails$(params as any).pipe(
+        tap(() => {
+          this.loading = false;
+          this.error = null;
+        }),
+        catchError(() => {
+          this.loading = false;
+          this.error = 'Errore nel caricamento';
+          return of<Mockmail[]>([]);
+        })
+      );
     })
   );
 
@@ -98,8 +108,10 @@ export class MailViewComponent implements OnInit{
 
   // ---- HANDLERS
   changeFolder(folder: MailFolder) {
-    this.pageIndex = 0;
+ this.pageIndex = 0;
+    this.selectedMailId = null;
     this.folder$.next(folder);
+    this.mode$.next({ kind: 'folder', value: folder });
     this.pageParams$.next({ pageIndex: 0, pageSize: this.pageSize });
     this.refreshTotal(folder);
   }
@@ -138,7 +150,11 @@ export class MailViewComponent implements OnInit{
   }
 
 onLabelSelected(label: string) {
-  console.log('Label selezionata:', label);
+  this.pageIndex = 0;
+    this.selectedMailId = null;
+    this.mode$.next({ kind: 'label', value: label });
+    this.pageParams$.next({ pageIndex: 0, pageSize: this.pageSize });
+    this.refreshTotalByLabel(label);
 }
 
   // ---- TOTAL con firstValueFrom
@@ -150,6 +166,13 @@ onLabelSelected(label: string) {
     console.log(`Total mail in ${folder}:`, this.total);
   }
 
+  private async refreshTotalByLabel(label: string): Promise<void> {
+    const allMails = await firstValueFrom(
+      this.mailDataServ.getMails$({ labels: label, page: 1, limit: 500 } as any)
+    );
+    this.total = allMails.length;
+    console.log(`Total mail with label ${label}:`, this.total);
+  }
   // ---- GETTER per pagination
   get showingFrom(): number {
     return this.total === 0 ? 0 : this.pageIndex * this.pageSize + 1;
