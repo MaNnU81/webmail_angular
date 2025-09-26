@@ -86,14 +86,10 @@ export class MailViewComponent implements OnInit{
         this.selectedMail = null;
         return;
       }
-
-      
       if (this.selectedMailId) {
         this.selectedMail = mails.find(m => m.id === this.selectedMailId) ?? mails[0];
         return;
       }
-
-      
       if (!this.selectedMail || !mails.some(m => m.id === this.selectedMail!.id)) {
         this.selectedMail = mails[0];
       }

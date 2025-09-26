@@ -17,7 +17,7 @@
     </div>
 
     <div class="mailview__mini-bar--secondary">
-      <input id="selectAll" type="checkbox">
+      
       <span class="mailview__column">Data:</span>
       <span class="mailview__column">Mittente:</span>
       <span class="mailview__column">Oggetto:</span>
@@ -34,7 +34,6 @@
     (mailSelected)="onMailSelected($event)"
     (starToggled)="onStarToggled($event)"
     [mails]="(mails$ | async) ?? []">
-  
   </app-mail-list>
   </section>
 
