@@ -1,7 +1,7 @@
 import { HttpClient,  HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import {  Observable } from 'rxjs';
+import {  Observable, switchMap } from 'rxjs';
 import { Mockmail, MailFolder } from '../model/mockmail';
 
 const SYSTEM_FOLDERS: MailFolder[]= ['inbox', 'sent', 'draft', 'trash'];
@@ -49,5 +49,17 @@ isSystemFolder(folder: MailFolder): boolean {
 
 
    constructor() { }
+
+
+updateMailLabels$(id: string, labels: string[]): Observable<Mockmail> {
+  
+  return this.http.get<Mockmail>(this.endpoint(`/${id}`)).pipe(
+    switchMap(mail => {
+     
+      const updatedMail = { ...mail, labels };
+      return this.http.put<Mockmail>(this.endpoint(`/${id}`), updatedMail);
+    })
+  );
+}
 }
 

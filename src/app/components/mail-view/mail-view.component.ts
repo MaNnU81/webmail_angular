@@ -87,24 +87,34 @@ export class MailViewComponent implements OnInit{
   );
 
   // ---- VIEW STREAM: applica patch prima del render, mantieni cache per i getter
-  mails$ = combineLatest([this.baseMails$, this.readState$]).pipe(
-    map(([mails, state]) => mails.map(m => (state[m.id] ? { ...m, ...state[m.id] } : m))),
-    tap(mails => {
-      this.mails = mails;
+  mails$ = combineLatest([this.baseMails$, this.readState$, this.mode$]).pipe(
+  
+  map(([mails, state, mode]) => {
+    const patched = mails.map(m => (state[m.id] ? { ...m, ...state[m.id] } : m));
+    
+    if (mode.kind === 'label') {
+      return patched.filter(m => (m.labels ?? []).includes(mode.value));
+    }
+    // altrimenti (folder) restituisci tutto
+    return patched;
+  }),
+  // 3) gestione selezione (identica alla tua)
+  tap(mails => {
+    this.mails = mails;
 
-      if (mails.length === 0) {
-        this.selectedMail = null;
-        return;
-      }
-      if (this.selectedMailId) {
-        this.selectedMail = mails.find(m => m.id === this.selectedMailId) ?? mails[0];
-        return;
-      }
-      if (!this.selectedMail || !mails.some(m => m.id === this.selectedMail!.id)) {
-        this.selectedMail = mails[0];
-      }
-    })
-  );
+    if (mails.length === 0) {
+      this.selectedMail = null;
+      return;
+    }
+    if (this.selectedMailId) {
+      this.selectedMail = mails.find(m => m.id === this.selectedMailId) ?? mails[0];
+      return;
+    }
+    if (!this.selectedMail || !mails.some(m => m.id === this.selectedMail!.id)) {
+      this.selectedMail = mails[0];
+    }
+  })
+);
 
   // ---- HANDLERS
   changeFolder(folder: MailFolder) {
@@ -139,15 +149,35 @@ export class MailViewComponent implements OnInit{
     }
   }
 
-  onStarToggled(mail: Mockmail) {
-    const current = mail.labels ?? [];
-    const hasStar = current.includes('starred');
-    const nextLabels = hasStar
+ onStarToggled(mail: Mockmail) {
+  const current = mail.labels ?? [];
+  const hasStar = current.includes('starred');
+  const nextLabels = hasStar
     ? current.filter(l => l !== 'starred')
     : [...current, 'starred'];
 
-    this.readPatch$.next({ id: mail.id, changes: { labels: nextLabels } });
-  }
+
+  this.readPatch$.next({ id: mail.id, changes: { labels: nextLabels } });
+
+
+  this.mailDataServ.updateMailLabels$(mail.id, nextLabels).pipe(
+    catchError(() => {
+      this.readPatch$.next({ id: mail.id, changes: { labels: current } });
+      this.error = 'Impossibile aggiornare la stella. Riprova.';
+      return of(null);
+    }),
+    tap(res => {
+      if (!res) return;
+      const mode = this.mode$.value;
+      if (mode.kind === 'label') {
+        this.refreshTotalByLabel(mode.value);
+      } else {
+        this.refreshTotal(this.folder$.value);
+      }
+
+    })
+  ).subscribe();
+}
 
 onLabelSelected(label: string) {
   this.pageIndex = 0;
