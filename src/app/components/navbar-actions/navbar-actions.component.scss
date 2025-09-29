@@ -30,7 +30,23 @@
   height: 20px;
   object-fit: contain;
 }
+.navbar__actions-panel {
+    display: flex;
+  gap: 8px;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease;
+  align-items: center; 
+  height: 40px; 
+}
 
+.input_form {
+  border: 1px solid #14518c;
+  border-radius: 8px;
+  height: 32px;
+  padding: 0 8px; 
+  margin: 4px; 
+}
 /* Media query per mobile */
 @media (max-width: 768px) {
   .navbar__actions-container {

@@ -98,7 +98,7 @@ export class MailViewComponent implements OnInit{
     // altrimenti (folder) restituisci tutto
     return patched;
   }),
-  // 3) gestione selezione (identica alla tua)
+  // 3) gestione selezione (identica)
   tap(mails => {
     this.mails = mails;
 

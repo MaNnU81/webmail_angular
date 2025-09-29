@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import {  Observable, switchMap } from 'rxjs';
 import { Mockmail, MailFolder } from '../model/mockmail';
+import { MailLabel } from '../model/mail-label';
 
 const SYSTEM_FOLDERS: MailFolder[]= ['inbox', 'sent', 'draft', 'trash'];
 
@@ -16,6 +17,7 @@ private http = inject(HttpClient);
 
 private apiBase = (environment.API_BASE ?? '').replace(/\/+$/, '');
 private resource = environment.MAILS_RESOURCE || 'mails';
+private labelsResource = 'labels';   //labels
 
 
 private endpoint(path: string = ''): string {
@@ -60,6 +62,15 @@ updateMailLabels$(id: string, labels: string[]): Observable<Mockmail> {
       return this.http.put<Mockmail>(this.endpoint(`/${id}`), updatedMail);
     })
   );
+}
+
+
+  getLabels$() {
+    return this.http.get<MailLabel[]>(`${this.apiBase}/${this.labelsResource}`);
+  }
+
+  createLabel$(name: string) {
+  return this.http.post<MailLabel>(`${this.apiBase}/${this.labelsResource}`, { name });
 }
 }
 

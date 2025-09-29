@@ -3,9 +3,40 @@
   <img src="images/edit64.png" class="icon-sm" alt=""><span>New Mail</span>
 </button>
 
-  <button  class="navbar__actions-button">
-    <img src="images/plus64.png" alt="aggiungi" class="icon-sm"><span>New Folder</span>
+<!-- src/app/components/navbar-actions/navbar-actions.component.html -->
+<div class="navbar__actions">
+  <button
+    class="navbar__actions-button"
+    type="button"
+    (click)="toggleAdd()"
+    [attr.aria-expanded]="addOpen ? 'true' : 'false'"
+    aria-controls="nav-addlabel"
+    [disabled]="pending">
+    <img src="images/plus64.png" alt="Aggiungi label" class="icon-sm">
+    <span>New Label</span>
   </button>
+
+  <div
+    *ngIf="addOpen"
+    id="nav-addlabel"
+    class="navbar__actions-panel"
+    role="region">
+    <form (submit)="$event.preventDefault(); submit()">
+      <input
+      class="input_form"
+        type="text"
+        [disabled]="pending"
+        [(ngModel)]="name"
+        name="labelName"
+        placeholder="Nome label..."
+        autocomplete="off"
+        required
+        minlength="2" />
+      <button type="submit" [disabled]="pending || !name.trim()"><img src="images/plus64.png" alt="Cerca" class="icon-sm"></button>
+    </form>
+  </div>
+</div>
+
 
   <!-- Toggle SOLO tablet/mobile -->
   <button class="navbar__actions-button"

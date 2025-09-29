@@ -1,0 +1,73 @@
+.navbar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar__list li{
+font-size: 24px;
+}
+
+
+.navbar__list li:hover {
+  background-color: #1664c4;
+  cursor: pointer;
+  color: white;
+}
+
+.navbar__group-title {
+  font-size: 32px;
+  text-decoration: underline;
+}
+
+.icon-sm {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+
+    .folder-select {
+    display: block; /* Mostra select su mobile */
+  }
+  
+  .navbar__folders {
+    display: none; /* Nascondi folder su mobile */
+  }
+  
+  /* Stile migliorato per il select */
+  .folder-select optgroup {
+    font-weight: 600;
+    color: #14518c;
+  }
+  
+  .folder-select option {
+    padding: 8px;
+  }
+  .navbar__list li {
+    padding: 8px 6px;
+    /* Più padding per touch */
+    font-size: 14px;
+    /* Testo leggermente più piccolo */
+  }
+
+  .navbar__group-title {
+    font-size: 16px;
+    /* Titoli più grandi per mobile */
+    margin: 12px 0 6px;
+  }
+
+  .icon-sm {
+    width: 20px;
+    /* Icone leggermente più grandi per mobile */
+    height: 20px;
+  }
+
+  .navbar__wrapper {
+    padding-right: 15px;
+    padding-bottom: 10px;
+  }
+}
