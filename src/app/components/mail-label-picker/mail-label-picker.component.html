@@ -10,15 +10,15 @@
           *ngFor="let l of labels; trackBy: trackById"
           class="navbar__item"
           type="button"
-            class="navbar__btn"
-            (click)="onItemClick(l)"
-            [class.is-active]="activeKey === ('lbl_' + l.id)"
-            [attr.aria-current]="activeKey === ('lbl_' + l.id) ? 'page' : null"
+          class="navbar__btn"
+          (click)="onItemClick(l)"
+          [class.is-active]="activeKey === ('lbl_' + l.id)"
+          [attr.aria-current]="activeKey === ('lbl_' + l.id) ? 'page' : null"
         >
          
         
-            <img class="icon-sm" src="images/privacy64.png" [alt]="l.name" />
-            <span>{{ l.name }}</span>
+          <img class="icon-sm" src="images/privacy64.png" [alt]="l.name" />
+          <span>{{ l.name }}</span>
           
         </li>
       </ul>

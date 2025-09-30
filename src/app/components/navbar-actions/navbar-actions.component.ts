@@ -24,21 +24,18 @@ export class NavbarActionsComponent {
   name = '';
 
   toggleAdd() {
-    if (this.pending)return;
   this.addOpen = !this.addOpen;
-  if (!this.addOpen) this.name = ''; 
-  }
+  if (!this.addOpen) this.name = '';
+}
 
-  submit() {
-    const trimmed = this.name.trim();
-    if (!trimmed || this.pending)return;
-    this.pending = true;
-    this.labelCreateRequested.emit(trimmed);
-  }
+submitNewLabel() {
+  const trimmed = this.name.trim();
+  if (!trimmed) return;
 
-  reset(done = false) {
-this.pending = false;
-if(done) {this.addOpen = false; this.name = ''; }
-  }  
+  // UI ottimistica: emetti, chiudi e pulisci subito
+  this.labelCreateRequested.emit(trimmed);
+  this.name = '';
+  this.addOpen = false;
+}
 
 }
