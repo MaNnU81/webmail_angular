@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { LabelKey, MailLabel, toLabelKey } from '../../model/mail-label';
 
 @Component({
-  selector: 'app-mail-label-picker',
+  selector: 'app-navbar-label-picker',
   imports: [NgIf, NgFor, AsyncPipe],
-  templateUrl: './mail-label-picker.component.html',
-  styleUrl: './mail-label-picker.component.scss'
+  templateUrl: './navbar-label-picker.component.html',
+  styleUrl: './navbar-label-picker.component.scss'
 })
-export class MailLabelPickerComponent {
+export class NavbarLabelPickerComponent {
   
   @Input() labels$!: Observable<MailLabel[]>;
   @Input() activeKey: string | null = null;

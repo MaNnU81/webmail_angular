@@ -5,6 +5,12 @@
   border: 0px;
 }
 
+.mailview__prevNext-btn {
+  border: 0px;
+  background-color: transparent;
+  margin-top: 4px;
+}
+
 .mailview {
   display: flex;
   flex-direction: column;
@@ -26,7 +32,7 @@
 }
 
 .mailview__mini-bar {
-  height: 28px;
+  height: 32px;
   display: flex;
   align-items: center;
   padding: 0 8px;
@@ -68,7 +74,7 @@
 @media (max-width: 768px) {
 
   .mailview__mini-bar--secondary {
-    grid-template-columns: 80px 1fr 1.5fr 1fr 0.6fr 0.6fr;
+    grid-template-columns: 120px  auto auto 15px 24px;
     gap: 2px;
     padding: 0 4px;
     height: 28px;

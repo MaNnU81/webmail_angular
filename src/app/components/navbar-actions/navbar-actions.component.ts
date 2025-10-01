@@ -13,29 +13,25 @@ import { FormsModule } from '@angular/forms';
 })
 export class NavbarActionsComponent {
   viewportServ = inject(ViewportService);
-  toggleSearch() { this.viewportServ.toggleSearch(); }
-
-
-
 
   @Output() labelCreateRequested = new EventEmitter<string>();
-  addOpen = false;
   pending = false;
   name = '';
 
-  toggleAdd() {
-  this.addOpen = !this.addOpen;
-  if (!this.addOpen) this.name = '';
-}
+addLabelOpen$ = this.viewportServ.addLabelOpen$;
+searchOpen$ = this.viewportServ.searchOpen$;
+
+  toggleSearch() { this.viewportServ.toggleSearch(); }
+  toggleAddLabel() { this.viewportServ.toggleAddLabel(); }
 
 submitNewLabel() {
   const trimmed = this.name.trim();
   if (!trimmed) return;
 
-  // UI ottimistica: emetti, chiudi e pulisci subito
+  
   this.labelCreateRequested.emit(trimmed);
   this.name = '';
-  this.addOpen = false;
+  this.viewportServ.closeAddLabel();
 }
 
 }

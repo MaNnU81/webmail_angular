@@ -30,7 +30,7 @@ export class ViewportService {
   readonly isDesktop$ = this.bo.observe('(min-width: 1024px)')
     .pipe(map(s => s.matches), shareReplay(1));
 
-///combina i 3 osservabili di sopra, e fa uscire il nome della class quando risulta true (univoco)
+
 
     readonly sizeClass$ = combineLatest([this.isMobile$, this.isTablet$, this.isDesktop$])
     .pipe(map(([m,t,d]): SizeClass => m ? 'mobile' : t ? 'tablet' : 'desktop' ), shareReplay(1));
@@ -38,17 +38,34 @@ export class ViewportService {
     private _searchOpen = new BehaviorSubject<boolean>(false);
     readonly searchOpen$ = this._searchOpen.asObservable();
 
-    toggleSearch() { this._searchOpen.next(!this._searchOpen.value); }
-    closeSearch() { this._searchOpen.next(false); }
+ 
 
+    private _addLabelOpen = new BehaviorSubject<boolean>(false);
+    readonly addLabelOpen$ = this._addLabelOpen.asObservable();
 
-    // Quando si passa a  desktop, chiude la search mobile per sicurezza
+   
   constructor() {
     this.isDesktop$.subscribe(isDesk => { if (isDesk) this.closeSearch(); });
   }
 
 
-  /////composer ---> desktop (popup) ----> smart/tabl route
+  openSearch() { this._addLabelOpen.next(false); this._searchOpen.next(true); }
+  closeSearch() { this._searchOpen.next(false); }
+  toggleSearch() {
+    const next =  !this._searchOpen.value;
+    if (next) this._addLabelOpen.next(false);
+    this._searchOpen.next(next);
+  }
+
+
+
+ openAddLabel() { this._searchOpen.next(false); this._addLabelOpen.next(true); }
+ closeAddLabel() { this._addLabelOpen.next(false); }
+ toggleAddLabel() {
+  const next = !this._addLabelOpen.value;
+  if (next) this._searchOpen.next(false);
+  this._addLabelOpen.next(next);
+ }
 
 async openCompose() {
   const isDesktop = await firstValueFrom(this.isDesktop$);

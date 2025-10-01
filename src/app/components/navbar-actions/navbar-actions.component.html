@@ -1,51 +1,37 @@
 <nav class="navbar__actions-container">
-<button type="button" class="navbar__actions-button" (click)="viewportServ.openCompose()">
-  <img src="images/edit64.png" class="icon-sm" alt=""><span>New Mail</span>
-</button>
+    <button type="button" class="navbar__actions-button" (click)="viewportServ.openCompose()">
+      <img src="images/edit64.png" class="icon-sm" alt=""><span>New Mail</span>
+    </button>
 
 
-<div class="navbar__actions">
-  <button
-    class="navbar__actions-button"
-    type="button"
-    (click)="toggleAdd()"
-    [attr.aria-expanded]="addOpen ? 'true' : 'false'"
-    aria-controls="nav-addlabel">
-    <img src="images/plus64.png" alt="Aggiungi label" class="icon-sm">
-    <span>New Label</span>
-  </button>
+  
+    <button class="navbar__actions-button" type="button" (click)="toggleAddLabel()"
+      [attr.aria-expanded]="(addLabelOpen$ | async) ? 'true' : 'false'" aria-controls="nav-addlabel">
+      <img src="images/plus64.png" alt="Aggiungi label" class="icon-sm">
+      <span>New Label</span>
+    </button>
 
-  <div *ngIf="addOpen" id="nav-addlabel" class="navbar__actions-panel" role="region">
-    <form class="search-form" (ngSubmit)="submitNewLabel()">
-      <input
-        class="input_form"
-        type="text"
-        [(ngModel)]="name"
-        name="labelName"
-        placeholder="Inserisci un nome valido"
-        autocomplete="off"
-        required
-        minlength="2" />
-      <button class="compose_btn" type="submit" [disabled]="!name.trim()">
-        <img src="images/plus64.png" alt="Crea" class="icon-sm">
-      </button>
-    </form>
-  </div>
-</div>
+    <div *ngIf="(addLabelOpen$ | async)" id="nav-addlabel" class="navbar__actions-panel" role="region">
+      <form class="search-form" (ngSubmit)="submitNewLabel()">
+        <input class="input_form" type="text" [(ngModel)]="name" name="labelName" placeholder="Inserisci un nome valido"
+          autocomplete="off" required minlength="2" />
+        <button class="compose_btn" type="submit" [disabled]="!name.trim()">
+          <img src="images/plus64.png" alt="Crea" class="icon-sm">
+        </button>
+      </form>
+    </div>
+  
 
 
 
-  <!-- Toggle SOLO tablet/mobile -->
-  <button class="navbar__actions-button"
-          *ngIf="!(viewportServ.isDesktop$ | async)"
-          (click)="toggleSearch()"
-          [attr.aria-expanded]="(viewportServ.searchOpen$ | async) ? 'true' : 'false'"
-          aria-controls="nav-search">
-          <img src="images/search64.png" alt="aggiungi" class="icon-sm"><span>Cerca</span>
-  </button>
+    <!-- Toggle SOLO tablet/mobile -->
+    <button class="navbar__actions-button" *ngIf="!(viewportServ.isDesktop$ | async)" (click)="toggleSearch()"
+      [attr.aria-expanded]="(searchOpen$ | async) ? 'true' : 'false'" aria-controls="nav-search">
+      <img src="images/search64.png" alt="aggiungi" class="icon-sm"><span>Cerca</span>
+    </button>
 
-  <!-- Barra di ricerca compatta: SOLO tablet/mobile + se aperta -->
-  <div *ngIf="(!(viewportServ.isDesktop$ | async)) && (viewportServ.searchOpen$ | async)" id="nav-search">
-    <app-search-module></app-search-module>
-  </div>
+    <!-- Barra di ricerca compatta: SOLO tablet/mobile + se aperta -->
+    <div *ngIf="(!(viewportServ.isDesktop$ | async)) && (viewportServ.searchOpen$ | async)" id="nav-search">
+      <app-search-module></app-search-module>
+    </div>
 </nav>

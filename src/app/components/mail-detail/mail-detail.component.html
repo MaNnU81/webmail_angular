@@ -1,7 +1,9 @@
 <article *ngIf="mail">
   <div class="maildetail__head">
+    <div class="maildetail__header-content">
     <div class="maildetail__subject">Oggetto: {{ mail.subject }}</div>
-
+<app-mail-labelprova class="mailview__detail-selector"></app-mail-labelprova>
+</div>
     <div class="maildetail__meta">
       <span>Da: {{ mail.from }}</span> 
        <!-- fare pipe  <span>Da: {{ extractName(mail.mittente) }}  {{ extractEmail(mail.mittente) }}</span> -->

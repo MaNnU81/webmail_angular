@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MailLabelPickerComponent } from './mail-label-picker.component';
+import { NavbarLabelPickerComponent } from './navbar-label-picker.component';
 
 describe('MailLabelPickerComponent', () => {
-  let component: MailLabelPickerComponent;
-  let fixture: ComponentFixture<MailLabelPickerComponent>;
+  let component: NavbarLabelPickerComponent;
+  let fixture: ComponentFixture<NavbarLabelPickerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MailLabelPickerComponent]
+      imports: [NavbarLabelPickerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MailLabelPickerComponent);
+    fixture = TestBed.createComponent(NavbarLabelPickerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,26 @@
+<div class="ms">
+<button type="button" class="control" (click)="toggleOpen()">
+<ng-container *ngIf="selectedOptions.length; else placeholder">
+<span class="chip" *ngFor="let option of selectedOptions">
+{{ option.label }}
+<button type="button" class="x" (click)="$event.stopPropagation(); remove(option)">×</button>
+</span>
+</ng-container>
+<ng-template #placeholder>
+<span class="placeholder">Seleziona label…</span>
+</ng-template>
+<span class="caret">▾</span>
+</button>
+
+
+<div class="panel" *ngIf="open">
+<ul>
+<li *ngFor="let option of options">
+<label [class.disabled]="option.disabled">
+<input type="checkbox" [checked]="isSelected(option)" [disabled]="option.disabled" (change)="toggle(option)">
+<span>{{ option.label }}</span>
+</label>
+</li>
+</ul>
+</div>
+</div>

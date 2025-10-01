@@ -3,14 +3,14 @@ import { NavbarActionsComponent } from "../navbar-actions/navbar-actions.compone
 import { ViewportService } from '../../services/viewport.service';
 import { NgIf, AsyncPipe, NgFor } from '@angular/common';
 import { MailFolder } from '../../model/mockmail';
-import { MailLabelPickerComponent } from "../mail-label-picker/mail-label-picker.component";
+import { NavbarLabelPickerComponent } from "../navbar-label-picker/navbar-label-picker.component";
 import { MailDataService } from '../../services/mail-data.service';
 import { catchError, Observable, of, startWith, Subject, switchMap, tap } from 'rxjs';
 import { LabelKey, MailLabel } from '../../model/mail-label';
 
 @Component({
   selector: 'app-navbar',
-  imports: [AsyncPipe, NgIf, NgFor, NavbarActionsComponent, MailLabelPickerComponent],
+  imports: [AsyncPipe, NgIf, NgFor, NavbarActionsComponent, NavbarLabelPickerComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
@@ -21,6 +21,8 @@ export class NavbarComponent {
   @Output() folderChanged = new EventEmitter<MailFolder>();
   @Output() folderSelected = new EventEmitter<MailFolder>();
   @Output() labelSelected  = new EventEmitter<string>();
+  
+  
 
   
 
@@ -61,16 +63,16 @@ onFolderSelect(event: any) {
       console.log('Cartella selezionata by rullo:', selectedValue);
       this.folderSelected.emit(selectedValue);
     }
-}
+  }
 
  onFolderClick(folder: MailFolder) {
     console.log('Cartella selezionata by list:', folder);
     this.folderSelected.emit(folder);
   }
 
-onLabelClick(label: string) {
-  this.labelSelected.emit(label);
-}
+  onLabelClick(label: string) {
+    this.labelSelected.emit(label);
+  }
 
   onLabelKeySelected(key: string) {
     this.labelSelected.emit(key); // passa 'lbl_<id>' verso il container

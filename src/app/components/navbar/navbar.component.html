@@ -47,7 +47,7 @@
     </nav>
 
     <nav aria-label="Folder preferiti">
-      <p class="navbar__group-title">Mail Preferite</p>
+      <!-- <p class="navbar__group-title">Mail Preferite</p> -->
 
       <ul class="navbar__list">
         <li (click)="onLabelClick('starred')">
@@ -59,9 +59,9 @@
     <nav aria-label="Folder personalizzati">
      
       <!-- Passa gli input e ascolta l’output -->
-      <app-mail-label-picker [labels$]="labels$" [activeKey]="activeLabelKey"
+      <app-navbar-label-picker [labels$]="labels$" [activeKey]="activeLabelKey"
         (labelSelected)="onLabelKeySelected($event)">
-      </app-mail-label-picker>
+      </app-navbar-label-picker>
     </nav>
   </div>
 

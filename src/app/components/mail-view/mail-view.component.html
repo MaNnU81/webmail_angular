@@ -9,15 +9,14 @@
         <ng-template #zero>0 di 0</ng-template>
       </span>
 
-      <button (click)="prev()" [disabled]="pageIndex === 0"> <img class="icon-sm" src="images/prev64.png"
+      <button class="mailview__prevNext-btn" (click)="prev()" [disabled]="pageIndex === 0"> <img class="icon-sm" src="images/prev64.png"
           alt="prev"></button>
-      <button (click)="next()" [disabled]="(pageIndex + 1) * pageSize >= total"><img class="icon-sm"
-          src="images/next64.png" alt="next"> </button>
-
+      <button class="mailview__prevNext-btn" (click)="next()" [disabled]="(pageIndex + 1) * pageSize >= total"><img 
+          src="images/next64.png" alt="next" class="icon-sm"> </button>
     </div>
 
     <div class="mailview__mini-bar--secondary">
-      
+      <!-- <button><img class="icon-sm" src="images/star64.png" alt="starred"></button> -->
       <span class="mailview__column">Data:</span>
       <span class="mailview__column">Mittente:</span>
       <span class="mailview__column">Oggetto:</span>

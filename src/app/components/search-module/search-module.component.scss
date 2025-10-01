@@ -3,7 +3,6 @@
   align-items: center;
   height: 40px;
   position: relative;
- 
 }
 
 
@@ -58,6 +57,7 @@
   height: 32px;
   padding: 0 8px; 
   margin: 4px; 
+  width: 300px;
 }
 
 
@@ -84,44 +84,5 @@
     gap: 0;
     margin: 0;
   }
-
-
-
-
- 
-
- /* Nascondi il form di default */
-  // .navbar #search {
-  //   display: none;
-  //   position: absolute;
-  //   top: 100%;
-  //   right: 0;
-  //   background: white;
-  //   padding: 4px;
-  //   border: 1px solid #14518c;
-  //   border-radius: 8px;
-  //   z-index: 1000;
-  //   width: 300px;
-  //   height: 80px;
-  // }
-
-  /* Mostra il toggle button */
-  // .navbar .search-toggle {
-  //   display: flex !important;
-  // }
-
-  /* Quando isExpanded = true, mostra il form */
-  // .navbar #search.visible {
-  //   display: flex !important;
-  //   flex-direction: row;
-  //   gap: 4px;
-  // }
-
-  /* Mostra l'input search */
-  // #search-box {
-  //   display: block !important;
-  //   width: 100%;
-  // }
-
 
 }

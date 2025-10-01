@@ -21,6 +21,7 @@
   justify-content: center;
   gap: 0;
   margin: 0;
+ 
 }
 
 .navbar__actions-button {
@@ -36,11 +37,19 @@
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
+  order: 1;            
+  flex: 0 0 auto;  
 }
 
 .navbar__actions-button:hover {
   background: #1664c4;
   color: #fff;
+}
+
+#nav-addlabel,
+#nav-search {
+  order: 2;            
+  flex-basis: 100%;    
 }
 
 .icon-sm {
@@ -85,4 +94,8 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  .input_form {
+  width: 300px;
+}
 }
