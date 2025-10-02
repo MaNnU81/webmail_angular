@@ -114,7 +114,10 @@ export class MailViewComponent implements OnInit{
     }
     if (!this.selectedMail || !mails.some(m => m.id === this.selectedMail!.id)) {
       this.selectedMail = mails[0];
-    }
+      this.selectedMailId = this.selectedMail.id;
+    }else {
+    this.selectedMail = mails.find(m => m.id === this.selectedMail!.id) ?? mails[0];
+  }
   })
 );
 
