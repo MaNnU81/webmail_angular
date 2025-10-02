@@ -80,7 +80,7 @@ export class MailViewComponent implements OnInit{
         }),
         catchError(() => {
           this.loading = false;
-          this.error = 'Errore nel caricamento';
+          this.error = 'Non ci sono Mail';
           return of<Mockmail[]>([]);
         })
       );
@@ -102,6 +102,7 @@ export class MailViewComponent implements OnInit{
   // 3) gestione selezione (identica)
   tap(mails => {
     this.mails = mails;
+    
 
     if (mails.length === 0) {
       this.selectedMail = null;
@@ -182,24 +183,16 @@ export class MailViewComponent implements OnInit{
 
 onMailLabelsChange({ mailId, next }: { mailId: string; next: string[] }) {
   const prev = this.mails.find(m => m.id === mailId)?.labels ?? [];
-
- 
   if (JSON.stringify(prev) === JSON.stringify(next)) return;
-
-  
   this.readPatch$.next({ id: mailId, changes: { labels: next } });
-
-  
   this.mailDataServ.updateMailLabels$(mailId, next).pipe(
-    catchError(() => {
-      
+    catchError(() => {    
       this.readPatch$.next({ id: mailId, changes: { labels: prev } });
       this.error = 'Impossibile aggiornare le etichette. Riprova.';
       return of(null);
     }),
     tap(ok => {
       if (!ok) return;
-      
       const mode = this.mode$.value;
       mode.kind === 'label'
         ? this.refreshTotalByLabel(mode.value)
