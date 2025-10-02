@@ -18,8 +18,8 @@ export class NavbarActionsComponent {
   pending = false;
   name = '';
 
-addLabelOpen$ = this.viewportServ.addLabelOpen$;
-searchOpen$ = this.viewportServ.searchOpen$;
+  addLabelOpen$ = this.viewportServ.addLabelOpen$;
+  searchOpen$ = this.viewportServ.searchOpen$;
 
   toggleSearch() { this.viewportServ.toggleSearch(); }
   toggleAddLabel() { this.viewportServ.toggleAddLabel(); }
@@ -27,11 +27,10 @@ searchOpen$ = this.viewportServ.searchOpen$;
 submitNewLabel() {
   const trimmed = this.name.trim();
   if (!trimmed) return;
-
-  
   this.labelCreateRequested.emit(trimmed);
   this.name = '';
   this.viewportServ.closeAddLabel();
 }
+
 
 }

@@ -14,7 +14,7 @@
     <div *ngIf="(addLabelOpen$ | async)" id="nav-addlabel" class="navbar__actions-panel" role="region">
       <form class="search-form" (ngSubmit)="submitNewLabel()">
         <input class="input_form" type="text" [(ngModel)]="name" name="labelName" placeholder="Inserisci un nome valido"
-          autocomplete="off" required minlength="2" />
+           required minlength="2" />
         <button class="compose_btn" type="submit" [disabled]="!name.trim()">
           <img src="images/plus64.png" alt="Crea" class="icon-sm">
         </button>

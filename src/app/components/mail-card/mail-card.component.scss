@@ -79,9 +79,9 @@
 
 @media (max-width: 768px) {
   .mailcard__row {
-    grid-template-columns: auto 0.8fr 1.2fr 1fr auto auto;
+    grid-template-columns: auto 40px 1.2fr 1fr auto auto;
     gap: 2px;
-    padding: 0 4px;
+    padding: 0 2px;
     height: 28px;
   }
 
@@ -124,7 +124,7 @@
   }
 
   .mailcard {
-    padding: 0 12px;
+    padding: 0 8px;
   }
 
   /* Stile selected per mobile */

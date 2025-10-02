@@ -1,8 +1,9 @@
 <article *ngIf="mail">
   <div class="maildetail__head">
+    
     <div class="maildetail__header-content">
     <div class="maildetail__subject">Oggetto: {{ mail.subject }}</div>
-<app-mail-labelprova class="mailview__detail-selector"></app-mail-labelprova>
+
 </div>
     <div class="maildetail__meta">
       <span>Da: {{ mail.from }}</span> 
@@ -10,6 +11,7 @@
       <span> • A: {{ mail.to }}</span>
       <span>{{ mail.createdAt | date : 'dd/MM/yyyy HH:mm' }}</span>
     </div>
+    <app-mail-labelprova [value]="mailLabelIds"   [labels$]="labels$" (valueChange)="onSelectorChange($event)" class="mailview__detail-selector"></app-mail-labelprova>
   </div>
 
   <div class="maildetail__body">

@@ -1,3 +1,6 @@
+
+
+
 .navbar__actions-container {
   display: flex;
   align-items: center;
@@ -58,11 +61,11 @@
   object-fit: contain;
 }
 .navbar__actions-panel {
-    display: flex;
+  display: flex;
   gap: 8px;
   opacity: 1;
   visibility: visible;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease;
   align-items: center; 
   height: 40px; 
 }
@@ -72,9 +75,9 @@
   gap: 8px;
   opacity: 1;
   visibility: visible;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease;
   align-items: center; 
-  height: 40px; 
+  height: auto; 
 }
 
 .input_form {
@@ -97,5 +100,5 @@
 
   .input_form {
   width: 300px;
-}
+  }
 }

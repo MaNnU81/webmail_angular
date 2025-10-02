@@ -69,12 +69,17 @@
   border-right: 0;
 }
 
-
+.mailview__column--preview {
+  border: none;
+}
 
 @media (max-width: 768px) {
+  .mailview__column--object {
+    border: none;
+  }
 
   .mailview__mini-bar--secondary {
-    grid-template-columns: 120px  auto auto 15px 24px;
+    grid-template-columns: 80px  auto auto 15px 24px;
     gap: 2px;
     padding: 0 4px;
     height: 28px;

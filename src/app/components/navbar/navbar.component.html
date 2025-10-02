@@ -1,22 +1,20 @@
 <aside class="navbar__wrapper">
-  <app-navbar-actions (labelCreateRequested)="onCreateLabel($event)"></app-navbar-actions>
+  <app-navbar-actions (labelCreateRequested)="labelCreateRequested.emit($event)">></app-navbar-actions>
 
   <!-- Select per mobile/tablet -->
   <select *ngIf="!(viewportServ.isDesktop$ | async)" class="folder-select" (change)="onSelectChange($event)">
     <option value="">Seleziona cartella...</option>
 
-    <optgroup label="Folder List">
+    <optgroup label="----------------Folder List----------------">
       <option value="folder:inbox">Inbox</option>
       <option value="folder:draft">Draft</option>
       <option value="folder:sent">Sent</option>
       <option value="folder:trash">Trash</option>
-    </optgroup>
-
-    <optgroup label="Preferite">
       <option value="label:starred">Mail Preferite</option>
     </optgroup>
 
-    <optgroup label="Custom Label">
+
+    <optgroup label="----------------Custom Label----------------">
       <!-- labels$ arriva dal service nel componente navbar -->
       <option *ngFor="let l of labels$ | async" [value]="'label:' + ('lbl_' + l.id)">
         {{ l.name }}

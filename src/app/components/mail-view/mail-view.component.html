@@ -19,7 +19,7 @@
       <!-- <button><img class="icon-sm" src="images/star64.png" alt="starred"></button> -->
       <span class="mailview__column">Data:</span>
       <span class="mailview__column">Mittente:</span>
-      <span class="mailview__column">Oggetto:</span>
+      <span class="mailview__column mailview__column--object">Oggetto:</span>
       <span class="mailview__column mailview__column--preview">Anteprima:</span>
       <input id="deleteAllMail" class="deleteMail deleteAllMail" type="checkbox">
       <img class="icon-sm" src="images/trash64.png" alt="Trash">
@@ -36,7 +36,7 @@
   </app-mail-list>
   </section>
 
-  <app-mail-detail [mail]="selectedMail"></app-mail-detail>
+  <app-mail-detail  [labels$]="labels$" [mail]="selectedMail"  (labelsChange)="onMailLabelsChange($event)"></app-mail-detail>
 
 
   <p *ngIf="loading">Caricamento…</p>

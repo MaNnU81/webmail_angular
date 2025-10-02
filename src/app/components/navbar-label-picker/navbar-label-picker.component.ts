@@ -12,8 +12,7 @@ import { LabelKey, MailLabel, toLabelKey } from '../../model/mail-label';
 export class NavbarLabelPickerComponent {
   
   @Input() labels$!: Observable<MailLabel[]>;
-  @Input() activeKey: string | null = null;
-
+  @Input() activeKey: string | null = null; 
   @Output() labelSelected = new EventEmitter<string>()
 
 

@@ -4,7 +4,8 @@ import { MailDetailComponent } from "../mail-detail/mail-detail.component";
 import { MailFolder, Mockmail } from '../../model/mockmail';
 import { NgIf, AsyncPipe } from '@angular/common';
 import { MailDataService } from '../../services/mail-data.service';
-import { BehaviorSubject, catchError, combineLatest, firstValueFrom, map, of, scan, startWith, Subject, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, firstValueFrom, map, Observable, of, scan, shareReplay, startWith, Subject, switchMap, take, tap } from 'rxjs';
+import { MailLabel } from '../../model/mail-label';
 
 type ViewMode =
   | { kind: 'folder'; value: MailFolder }
@@ -23,12 +24,12 @@ export class MailViewComponent implements OnInit{
   loading = false;
   error: string | null = null;
   selectedMailId: string | null = null;
-
+  creatingLabel = false; 
   // paginator
   pageIndex = 0;
   pageSize = 10;
   total = 0;
-
+ 
 
   ngOnInit(): void {
     // inizializza il totale per la folder iniziale
@@ -179,6 +180,35 @@ export class MailViewComponent implements OnInit{
   ).subscribe();
 }
 
+onMailLabelsChange({ mailId, next }: { mailId: string; next: string[] }) {
+  const prev = this.mails.find(m => m.id === mailId)?.labels ?? [];
+
+ 
+  if (JSON.stringify(prev) === JSON.stringify(next)) return;
+
+  
+  this.readPatch$.next({ id: mailId, changes: { labels: next } });
+
+  
+  this.mailDataServ.updateMailLabels$(mailId, next).pipe(
+    catchError(() => {
+      
+      this.readPatch$.next({ id: mailId, changes: { labels: prev } });
+      this.error = 'Impossibile aggiornare le etichette. Riprova.';
+      return of(null);
+    }),
+    tap(ok => {
+      if (!ok) return;
+      
+      const mode = this.mode$.value;
+      mode.kind === 'label'
+        ? this.refreshTotalByLabel(mode.value)
+        : this.refreshTotal(this.folder$.value);
+    })
+  ).subscribe();
+}
+
+
 onLabelSelected(label: string) {
   this.pageIndex = 0;
     this.selectedMailId = null;
@@ -214,4 +244,45 @@ onLabelSelected(label: string) {
   get showingCount(): number {
     return this.mails?.length ?? 0;
   }
+
+
+
+  /////////label //////
+  private labelsRefresh$ = new Subject<void>();
+  labels$: Observable<MailLabel[]> = this.labelsRefresh$.pipe(
+    startWith(void 0),
+    switchMap(() => this.mailDataServ.getLabels$()),
+    shareReplay(1),
+  );
+
+
+  onCreateLabel(name: string) {
+  const trimmed = name?.trim();
+  if (!trimmed || this.creatingLabel) return;
+
+  this.creatingLabel = true;
+
+  // (facoltativo) dedup veloce per evitare doppie etichette case-insensitive
+  this.labels$.pipe(take(1)).subscribe(current => {
+    const exists = (current ?? []).some(l => l.name.toLowerCase() === trimmed.toLowerCase());
+    if (exists) {
+      this.creatingLabel = false;
+      // opzionale: this.error = 'Etichetta già esistente';
+      return;
+    }
+
+    this.mailDataServ.createLabel$(trimmed).pipe(
+      tap(() => {
+        // ricarica la lista (single source of truth)
+        this.labelsRefresh$.next();
+        this.creatingLabel = false;
+      }),
+      catchError(err => {
+        console.error('Create label error', err);
+        this.creatingLabel = false;
+        return of(null);
+      })
+    ).subscribe();
+  });
+}
 }

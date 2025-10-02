@@ -1,6 +1,8 @@
 <div class="app-container">                              
     <app-header    class="app-header"></app-header>
     <app-navbar 
+        [labels$]="mailView.labels$"
+        (labelCreateRequested)="mailView.onCreateLabel($event)"
         (folderSelected)="mailView.changeFolder($event)" 
         (labelSelected)="mailView.onLabelSelected($event)"
         class="app-navbar">
