@@ -5,24 +5,39 @@
 }
 
 .mailcard__icon{
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
 }
 
 .mailcard.mail-selected .mailcard__row {
   
-  border: 3px solid #0d09f3 !important;
+  // border: 3px solid #DF3000 !important;
+-webkit-box-shadow:0px 0px 10px 5px #DF3000;
+-moz-box-shadow:0px 0px 10px 5px #DF3000;
+-o-box-shadow:0px 0px 10px 5px #DF3000;
+box-shadow:0px 0px 10px 5px #DF3000;
+}
+
+.mailcard__row-container {
+ 
+  background-color: transparent;
+  margin: 16px 12px;
 }
 
 .mailcard__row {
   display: grid;
   grid-template-columns: auto 60px 1fr 1fr 1fr auto auto;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  background-color: transparent;
   padding: 0 8px;
-  height: 32px;
-  border-bottom: 1px solid #e6e6e6;
+  height: 64px;
+  border-radius: 20px;
   transition: background-color 0.2s ease, border-left 0.2s ease;
+-webkit-box-shadow:0px 0px 8px 2px #1A05A7;
+-moz-box-shadow:0px 0px 8px 2px #1A05A7;
+-o-box-shadow:0px 0px 8px 2px #1A05A7;
+box-shadow:0px 0px 8px 2px #1A05A7;
 }
 
 .mailcard__cell {
@@ -61,20 +76,25 @@
 
   :host {
   display: block;
-  border-bottom: 1px solid #e6e6e6; 
+
 }
 
 /* Mail LETTA */
 :host(.is-read) {
-  background-color: #f7f9fc;
-  color: #666;
+  border-radius: 20px;
 }
 
 /* Mail NON letta */
 :host(.is-unread) {
-  background-color: #1664c46b;
   color: #222;
-  
+  border-radius: 20px;
+  background-color:#14508c63;
+  border: 1px #2807FF solid;
+-webkit-box-shadow:inset 0px 0px 27px 2px #2807FF;
+-moz-box-shadow:inset 0px 0px 27px 2px #2807FF;
+-o-box-shadow:inset 0px 0px 27px 2px #2807FF;
+box-shadow:inset 0px 0px 27px 2px #2807FF;
+margin: 0px 4px;
 }
 
 @media (max-width: 768px) {
@@ -82,7 +102,7 @@
     grid-template-columns: auto 40px 1.2fr 1fr auto auto;
     gap: 2px;
     padding: 0 2px;
-    height: 28px;
+    height: 62px;
   }
 
   /* Nascondi la colonna anteprima */
@@ -99,7 +119,7 @@
 
   
   .mailcard__row .mailcard__cell:not(:first-of-type) {
-    font-size: 16px;
+    font-size: 20px;
   }
 
  
@@ -110,8 +130,8 @@
   }
 
   .mailcard__row img.mailcard__icon {
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
   }
 
 
@@ -127,8 +147,15 @@
     padding: 0 8px;
   }
 
-  /* Stile selected per mobile */
-  // .mailcard.mail-selected .mailcard__row {
-  //   border-left-width: 2px;
-  // }
+:host(.is-unread) {
+  color: #222;
+  border-radius: 20px;
+  background-color:#14508c63;
+  border: 1px #2807FF solid;
+-webkit-box-shadow:inset 0px 0px 16px 2px #2807FF;
+-moz-box-shadow:inset 0px 0px 16px 2px #2807FF;
+-o-box-shadow:inset 0px 0px 16px 2px #2807FF;
+box-shadow:inset 0px 0px 16px 2px #2807FF;
+
+}
 }
