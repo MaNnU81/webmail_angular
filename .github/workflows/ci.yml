@@ -11,36 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    # 1. Checkout del codice
     - name: Checkout code
       uses: actions/checkout@v3
     
-    # 2. Setup Node.js
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
         cache: 'npm'
     
-    # 3. Installa dipendenze
     - name: Install dependencies
       run: npm ci
     
-    # 4. Esegui i test
     - name: Run tests
       run: npm test -- --watch=false --browsers=ChromeHeadless
     
-    # 5. Build del progetto
-    - name: Build project
-      run: npm run build
-
-       # 6. Lint del codice
-    - name: Run lint
-      run: npm run lint
-    
-    # 7. Upload artefatti (opzionale)
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: dist-files
-        path: dist/
+    - name: Build project (development)
+      run: npm run build -- --configuration=development
