@@ -86,6 +86,10 @@
   height: 32px;
   padding: 0 8px; 
   margin: 4px; 
+  -webkit-box-shadow:0px 0px 8px 2px #1A05A7;
+-moz-box-shadow:0px 0px 8px 2px #1A05A7;
+-o-box-shadow:0px 0px 8px 2px #1A05A7;
+box-shadow:0px 0px 8px 2px #1A05A7;
 }
 /* Media query per mobile */
 @media (max-width: 768px) {
