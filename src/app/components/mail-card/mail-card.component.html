@@ -1,37 +1,34 @@
-<div class="mailcard" [class.mail-selected]="isSelected">
+<div class="mailcard__row-container">
+  <div class="mailcard__row" [class.mail-selected]="isSelected">
 
-  <div class="mailcard__row-container">
-    <div class="mailcard__row">
+    <img class=" mailcard__icon"
+      [src]="(mail.labels?.includes('starred') ? 'images/star64.png' : 'images/addstar64.png')"
+      (click)="onStarClick($event)" aria-hidden="true">
 
-      <img class=" mailcard__icon"
-        [src]="(mail.labels?.includes('starred') ? 'images/star64.png' : 'images/addstar64.png')"
-        (click)="onStarClick($event)" aria-hidden="true">
+    <!-- data -->
+    <span class="mailcard__cell">
+      {{ mail.createdAt | date:'dd-MMM' | uppercase }}
+    </span>
 
-      <!-- data -->
-      <span class="mailcard__cell">
-        {{ mail.createdAt | date:'dd-MMM' | uppercase }}
-      </span>
+    <!-- mittente (renderizza &#64; come @) -->
+    <span class="mailcard__cell" [innerHTML]="mail.from"></span>
 
-      <!-- mittente (renderizza &#64; come @) -->
-      <span class="mailcard__cell" [innerHTML]="mail.from"></span>
+    <!-- oggetto -->
+    <span class="mailcard__cell">
+      {{ mail.subject }}
+    </span>
 
-      <!-- oggetto -->
-      <span class="mailcard__cell">
-        {{ mail.subject }}
-      </span>
+    <!-- anteprima -->
+    <span class="mailcard__cell mailcard__cell--preview">
+      {{ mail.preview }}
+    </span>
 
-      <!-- anteprima -->
-      <span class="mailcard__cell mailcard__cell--preview">
-         {{ mail.preview }}
-      </span>
+    <!-- checkbox elimina (solo layout, disattivata) -->
+    <input class="mailcard__delete" type="checkbox">
 
-      <!-- checkbox elimina (solo layout, disattivata) -->
-      <input class="mailcard__delete" type="checkbox">
-
-      <!-- icona trash (solo display) -->
-      <img class="icon_mini" src="images/trash64.png" alt="Trash" aria-hidden="true">
-    </div>
-
-
+    <!-- icona trash (solo display) -->
+    <img class="icon_mini" src="images/trash64.png" alt="Trash" aria-hidden="true">
   </div>
+
+
 </div>

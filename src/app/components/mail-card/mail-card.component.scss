@@ -9,7 +9,7 @@
   height: 40px;
 }
 
-.mailcard.mail-selected .mailcard__row {
+.mail-selected.mailcard__row {
   
   // border: 3px solid #DF3000 !important;
 -webkit-box-shadow:0px 0px 10px 5px #DF3000;
@@ -21,7 +21,7 @@ box-shadow:0px 0px 10px 5px #DF3000;
 .mailcard__row-container {
  
   background-color: transparent;
-  margin: 16px 12px;
+  margin: 20px 12px;
 }
 
 .mailcard__row {
@@ -34,11 +34,13 @@ box-shadow:0px 0px 10px 5px #DF3000;
   height: 64px;
   border-radius: 20px;
   transition: background-color 0.2s ease, border-left 0.2s ease;
--webkit-box-shadow:0px 0px 8px 2px #1A05A7;
--moz-box-shadow:0px 0px 8px 2px #1A05A7;
--o-box-shadow:0px 0px 8px 2px #1A05A7;
-box-shadow:0px 0px 8px 2px #1A05A7;
-}
+-webkit-box-shadow:0px 0px 10px 3px #1A05A7;
+-moz-box-shadow:0px 0px 10px 3px #1A05A7;
+-o-box-shadow:0px 0px 10px 3px #1A05A7;
+box-shadow:0px 0px 10px 3px #1A05A7;
+  }
+
+  
 
 .mailcard__cell {
   flex: 1 1 0;
@@ -90,11 +92,28 @@ box-shadow:0px 0px 8px 2px #1A05A7;
   border-radius: 20px;
   background-color:#14508c63;
   border: 1px #2807FF solid;
--webkit-box-shadow:inset 0px 0px 2px 2px #2807FF;
--moz-box-shadow:inset 0px 0px 2px 2px #2807FF;
--o-box-shadow:inset 0px 0px 2px 2px #2807FF;
-box-shadow:inset 0px 0px 2px 2px #2807FF;
+-webkit-box-shadow:inset 0px 0px 20px 2px #2807FF;
+-moz-box-shadow:inset 0px 0px 20px 2px #2807FF;
+-o-box-shadow:inset 0px 0px 20px 2px #2807FF;
+box-shadow:inset 0px 0px 20px 2px #2807FF;
 margin: 0px 4px;
+}
+
+
+:host(.is-unread) .mailcard__row {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+:host(.is-unread) .mailcard__row:hover {
+  
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+
 }
 
 @media (max-width: 768px) {

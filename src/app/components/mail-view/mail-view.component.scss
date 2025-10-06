@@ -1,8 +1,9 @@
 .icon-sm {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   background-color: transparent;
   border: 0px;
+  margin-bottom: 4px;
 }
 
 .mailview__prevNext-btn {
@@ -35,16 +36,18 @@
   height: 32px;
   display: flex;
   align-items: center;
+  margin-top: 12px;
+  margin-bottom: 8px;
   padding: 0 8px;
   gap: 4px;
   overflow: hidden;
-  border-top: 1px solid #14518c;
   position: relative;
+  font-size: 20px;
 }
 
 .mailview__mini-bar--secondary {
   align-items: center;
-  font-size: 18px;
+  font-size: 20px;
   display: grid;
   grid-template-columns:  100px 1fr 1fr 1fr auto auto;
   gap: 2px;
@@ -55,14 +58,12 @@
 
 .mailview__total {
   margin-left: auto;
-  font-size: 20px;
   line-height: 12px;
 }
 
 .mailview__column {
   border-right: 1px solid #14518c;
   align-items: center;
-  font-size: 18px;
 }
 
 .mailview__mini-bar--secondary img.mailview__column {
@@ -74,8 +75,16 @@
 }
 
 @media (max-width: 768px) {
-  .mailview__column--object {
-    border: none;
+
+  .icon-sm {
+  width: 24px;
+  height: 24px
+}
+
+
+
+  .mailview__mini-bar {
+    margin: 0;
   }
 
   .mailview__mini-bar--secondary {

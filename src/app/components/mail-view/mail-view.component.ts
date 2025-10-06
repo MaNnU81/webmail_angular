@@ -258,18 +258,18 @@ onLabelSelected(label: string) {
 
   this.creatingLabel = true;
 
-  // (facoltativo) dedup veloce per evitare doppie etichette case-insensitive
+ 
   this.labels$.pipe(take(1)).subscribe(current => {
     const exists = (current ?? []).some(l => l.name.toLowerCase() === trimmed.toLowerCase());
     if (exists) {
       this.creatingLabel = false;
-      // opzionale: this.error = 'Etichetta già esistente';
+      // da sviluppare:  'Etichetta già esistente';
       return;
     }
 
     this.mailDataServ.createLabel$(trimmed).pipe(
       tap(() => {
-        // ricarica la lista (single source of truth)
+       
         this.labelsRefresh$.next();
         this.creatingLabel = false;
       }),

@@ -26,13 +26,11 @@ export class MailLabelSelectorComponent {
   set labelsStream$(src: Observable<MailLabel[]> | undefined) {
     if (!src) return;
     this.options$ = src.pipe(
-      tap(labels => console.log('[labels$] emissione ricevuta:', labels)),
       map(labels => (labels ?? []).map(l => ({
         value: 'lbl_' + l.id,
         label: l.name,
         disabled: false
-      }))),
-      tap(opts => console.log('[options$] mappate per UI:', opts))
+      })))
     );
   }
 
