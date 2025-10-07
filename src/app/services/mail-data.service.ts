@@ -72,5 +72,7 @@ updateMailLabels$(id: string, labels: string[]): Observable<Mockmail> {
   createLabel$(name: string) {
   return this.http.post<MailLabel>(`${this.apiBase}/${this.labelsResource}`, { name });
 }
+
+
 }
 

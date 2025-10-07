@@ -6,15 +6,15 @@
 }
 
 .header__settings-icon {
-
-height: 24px;
-width: 24px;
-cursor: pointer;
+    height: 28px;
+    width: 28px;
+    cursor: pointer;
 }
 
 .header__user-avatar {
     width: 64px;
     height: 64px;
+    margin-bottom: 8px;
 }
 
 .header__username {
@@ -28,11 +28,11 @@ cursor: pointer;
     .header__account-container {
         gap: 4px;
     }
-    
+
     .header__user-avatar {
         margin: 0;
-        width: 24px;
-        height: 24px;
+        width: 32px;
+        height: 32px;
     }
 
     .header__username {

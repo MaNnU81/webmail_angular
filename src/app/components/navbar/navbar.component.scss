@@ -7,12 +7,14 @@
 .navbar__group-title {
   font-size: 32px;
   text-decoration: underline;
+  margin-bottom: 8px;
 }
 .navbar__list {
   list-style: none;
   margin: 0;
   padding: 0;
   transition: background-color 0.3s ease, color 0.3s ease;
+  margin-bottom: 12px;
 }
 .navbar__list li{
 font-size: 24px;
@@ -25,8 +27,8 @@ font-size: 24px;
 }
 
 .icon-sm {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
   margin-right: 8px;
 }
@@ -47,6 +49,7 @@ font-size: 24px;
 /* Folder desktop - sempre visibili su desktop */
 .navbar__folders {
   display: block;
+ 
 }
 
 ////////////////
